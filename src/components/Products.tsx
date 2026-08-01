@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { ArrowUpRight, CheckCircle, Sparkles } from "lucide-react";
+import { ArrowUpRight, Info } from "lucide-react";
 import { getDictionary } from "@/dictionaries";
 import ProductModal from "./ProductModal";
 
@@ -16,10 +16,10 @@ export default function Products({ lang }: ProductsProps) {
   const [selectedProduct, setSelectedProduct] = useState<any | null>(null);
 
   return (
-    <section id="products" className="py-32 bg-[#090b09] relative border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+    <section id="products" className="py-28 bg-[#090b09] relative border-t border-white/5">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         {/* Section Title */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
           <div>
             <div className="flex items-center gap-3 mb-4">
               <div className="w-8 h-[1px] bg-[#d4af37]" />
@@ -31,13 +31,19 @@ export default function Products({ lang }: ProductsProps) {
               {dict.products.title}
             </h2>
           </div>
-          <p className="text-gray-400 max-w-lg text-sm sm:text-base leading-relaxed font-light">
-            {dict.products.subtitle}
-          </p>
+          <div className="flex flex-col max-w-lg">
+            <p className="text-gray-300 text-sm leading-relaxed font-light">
+              {dict.products.subtitle}
+            </p>
+            <div className="mt-3 flex items-center gap-2 text-xs font-mono text-gray-400 bg-white/[0.03] p-2.5 rounded-lg border border-white/5">
+              <Info className="w-4 h-4 text-[#d4af37] shrink-0" />
+              <span>{dict.products.disclaimer}</span>
+            </div>
+          </div>
         </div>
 
         {/* Products Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {dict.products.items.map((item, index) => (
             <motion.div
               key={item.id}
@@ -52,7 +58,7 @@ export default function Products({ lang }: ProductsProps) {
               <div className="relative aspect-[16/10] w-full bg-black overflow-hidden">
                 <Image
                   src={item.image}
-                  alt={item.name}
+                  alt={`${item.name} - Ege inciri temsilî görsel`}
                   fill
                   className="object-cover img-editorial filter brightness-90 contrast-105"
                 />
@@ -64,12 +70,12 @@ export default function Products({ lang }: ProductsProps) {
               </div>
 
               {/* Product Details */}
-              <div className="p-8 flex flex-col justify-between flex-1">
+              <div className="p-6 sm:p-8 flex flex-col justify-between flex-1">
                 <div>
-                  <h3 className="font-serif text-2xl text-white font-medium group-hover:text-[#d4af37] transition-colors mb-3">
+                  <h3 className="font-serif text-xl sm:text-2xl text-white font-medium group-hover:text-[#d4af37] transition-colors mb-3">
                     {item.name}
                   </h3>
-                  <p className="text-xs text-gray-400 font-light leading-relaxed mb-6 line-clamp-3">
+                  <p className="text-xs text-gray-400 font-light leading-relaxed mb-6">
                     {item.desc}
                   </p>
                 </div>

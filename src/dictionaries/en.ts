@@ -1,199 +1,250 @@
 export const en = {
   meta: {
-    title: "GERGA — Ancient Aegean Heritage, Future Agronomy Vision | International Exhibition Showcase",
-    description: "GERGA is a premium Aegean agricultural brand presenting world-class organic figs, certified sapling nurseries, and turnkey orchard engineering solutions.",
-    keywords: "GERGA, dried figs, Sarilop, organic fig, fig nursery, orchard engineering, Aegean agriculture, Aydin figs, agro-export, Fruit Logistica, Gulfood",
+    title: "GERGA | Aegean Figs, Saplings and Orchard Establishment",
+    description: "Discover GERGA’s Aegean fig products, fig saplings, orchard establishment services and agricultural partnership opportunities.",
+    keywords: "GERGA, Aegean figs, dried figs, fig saplings, orchard establishment, agricultural consultancy, B2B agriculture",
   },
   nav: {
-    story: "Our Story",
-    aegean: "Aegean Terroir",
-    products: "Collection",
+    intro: "GERGA",
+    aegean: "Aegean & Figs",
+    products: "Products",
     nursery: "Nursery",
-    engineering: "Engineering",
+    engineering: "Orchard Setup",
     academy: "Academy",
+    b2bMeeting: "Meet at Exhibition",
     gallery: "Gallery",
-    whyUs: "Why GERGA",
-    contact: "Contact Desk",
-    exhibitionBadge: "B2B Exhibition Showcase",
+    contact: "Contact",
+    exhibitionBadge: "B2B Exhibition Meeting",
   },
   hero: {
-    subtitle: "AEGEAN BASIN • INTERNATIONAL EXHIBITION SHOWCASE",
-    title: "The Ancient Art of Soil,",
-    titleGold: "The Pinnacle of Engineering.",
-    manifesto: "We do not merely cultivate figs; we architect the future of Aegean agriculture through rigorous science, soil reverence, and museum-grade quality standards.",
-    primaryCta: "Explore Exhibition Collection",
-    secondaryCta: "Connect with Partner Desk",
-    metrics: [
-      { label: "Annual Sunlight", value: "300+ Days" },
-      { label: "Purity Index", value: "100% Organic" },
-      { label: "Export Geography", value: "35+ Countries" },
-    ]
+    overline: "AN AGRICULTURAL ECOSYSTEM BORN IN THE AEGEAN",
+    headline: "From fig to sapling, from soil to the future.",
+    description: "GERGA brings together selected Aegean products, fig sapling production, professional orchard establishment and practical agricultural knowledge under one brand.",
+    primaryCta: "Discover GERGA",
+    secondaryCta: "Request a Meeting",
+    disclaimer: "Visuals are representative. Business details are pending verification.",
   },
-  story: {
-    tag: "SECTION 01 — HERITAGE & VISION",
-    title: "An Aegean Legacy Reimagined for the World Stage",
-    p1: "Nurtured by the millennia-old mineral richness and refreshing sea breezes of the Büyük Menderes Valley, GERGA transforms traditional farming into an international manifesto of uncompromised quality.",
-    p2: "To us, every single fig represents precise soil analytics, surgical pruning protocols, and profound respect for natural lifecycles. Our harvests are curated exclusively for luxury gourmet markets and discerning commercial importers.",
-    quote: "Agriculture is a flawless symphony where nature meets human ingenuity.",
-    quoteAuthor: "GERGA Executive Directorate",
-    highlights: [
-      { number: "01", title: "Traceable Cultivation", desc: "100% transparent digital supply chain tracking from sapling to shipment." },
-      { number: "02", title: "Global Accreditation", desc: "Certified under GLOBALG.A.P., USDA Organic, and ISO 22000." },
-      { number: "03", title: "Selective Reserve", desc: "Only the top 15% tier of each harvest earns the GERGA seal." }
-    ]
+  intro: {
+    tag: "SECTION 01 — ABOUT GERGA",
+    title: "A Next-Generation Agricultural Brand Under One Roof",
+    description: "GERGA is an integrated agricultural vision built upon the heritage and natural fertility of the Aegean basin. We do not merely offer products; we aim to be a trusted partner at every stage of cultivation—from selecting true-to-type saplings to scientific field establishment and practical knowledge transfer.",
+    pillars: [
+      {
+        title: "Selected Aegean Products",
+        desc: "Meticulous selection and grading of authentic Aegean figs and agricultural harvests.",
+      },
+      {
+        title: "Sapling Production",
+        desc: "Supply of healthy, true-to-type fig saplings suitable for commercial orchards.",
+      },
+      {
+        title: "Orchard Establishment",
+        desc: "Professional field services spanning soil preparation, planting, and infrastructure design.",
+      },
+      {
+        title: "Agricultural Academy",
+        desc: "Sharing practical field experience and technical knowledge with growers and investors.",
+      },
+    ],
   },
   aegean: {
-    tag: "SECTION 02 — GEOGRAPHICAL TERROIR",
-    title: "The Aegean Microclimate & Soil Secret",
-    subtitle: "Why the World's Thinnest-Skinned, Highest-Fructose Figs Thrive Here",
-    description: "The Büyük Menderes Basin forms a unique ecological sanctuary where Mediterranean humidity meets mountain drafts, creating an unrivaled microclimate for ultra-premium fig cultivation.",
+    tag: "SECTION 02 — GEOGRAPHICAL ORIGIN",
+    title: "The Aegean Basin & Heritage of Figs",
+    subtitle: "Natural Climate Balance & Soil Profile",
+    description: "For centuries, the Aegean region has possessed a unique microclimate for cultivating renowned figs. Natural wind currents and mineral-rich soils shape the distinct texture and taste profile of Aegean figs.",
+    disclaimer: "Technical information is pending verification. Specific microclimate data will be shared upon request.",
     cards: [
       {
-        title: "The Northerly Breeze (İmbat)",
-        desc: "Maintains optimal day-night thermal balance during ripening, producing exceptionally translucent skins and honeyed interiors.",
-        stat: "22-26°C",
-        statLabel: "Ideal Moisture Micro-climate"
+        title: "Natural Breeze Flow",
+        desc: "Aegean sea breezes balancing diurnal moisture levels during fruit ripening.",
       },
       {
-        title: "Alluvial Soil Wealth",
-        desc: "Centuries of mineral deposits brought by the Menderes River enrich the deep root systems of our heritage orchards.",
-        stat: "pH 6.8 - 7.2",
-        statLabel: "Optimal Soil Balance"
+        title: "Basin Soil Character",
+        desc: "Well-drained alluvial soil profiles supporting deep root development.",
       },
       {
-        title: "Solar Radiation",
-        desc: "Exceeding 3,000 annual hours of direct sunlight, ensuring natural fructose crystallization without artificial additives.",
-        stat: "3,200 Hours",
-        statLabel: "Annual Sunshine"
-      }
-    ]
+        title: "Solar Exposure",
+        desc: "Ample sunshine supporting natural drying processes on the tree and in groves.",
+      },
+    ],
   },
   products: {
-    tag: "SECTION 03 — EXHIBITION COLLECTION",
-    title: "The GERGA Harvest Showcase",
-    subtitle: "Value-Added Agricultural Products Tailored for Global Importers and Fine Food Retailers",
-    viewDetails: "Inspect Specifications & Certifications",
+    tag: "SECTION 03 — PRODUCT APPROACH",
+    title: "Product Range & Quality Approach",
+    subtitle: "Product Portfolio for Exhibition Visitors & Wholesale Importers",
+    disclaimer: "The product portfolio will be updated before the exhibition. Supporting documents will be shared upon request.",
+    viewDetails: "Inspect & Inquire",
     items: [
       {
-        id: "sarilop-dry",
-        name: "Organic Aydın Sarılop Dried Figs",
-        category: "Gourmet Dried Reserve",
-        desc: "Hand-picked from protected high-altitude Aegean orchards, naturally sun-dried without sulphur dioxide or chemical residues.",
-        specs: ["Caliber: 1 - 4 (Oversized Selection)", "Moisture Content: 18% - 22%", "Certifications: BIO Organic, GlobalGAP", "Packaging: 250g, 500g, 5kg Wooden & Vacuum Sealed Cases"],
-        image: "/images/product-fig.png"
+        id: "dried-figs",
+        name: "Aegean Dried Fig Selection",
+        category: "Dried Harvest",
+        desc: "Curated dried fig range sourced from Aegean orchards, graded according to size and quality standards.",
+        specs: ["Varietal: Aydın Sarılop and Regional Varieties", "Packaging: Wholesale Cases & Bulk Options", "Documentation: Shared upon request", "Status: Portfolio updated before exhibition"],
+        image: "/images/product-fig.png",
       },
       {
-        id: "bursa-black",
-        name: "Fresh Mountain & Bursa Black Figs",
-        category: "Fresh Export Series",
-        desc: "Transported in temperature-controlled smart containers within 24 hours to premium European & Middle Eastern markets.",
-        specs: ["Diameter: 55mm - 65mm", "Brix Sugar Rating: > 21°", "Tray Type: Breathable Molded Protective Trays", "Shelf Life: 18 Days in Cold Chain"],
-        image: "/images/hero.png"
+        id: "fresh-figs",
+        name: "Fresh Fig Varieties",
+        category: "Fresh Produce",
+        desc: "Fresh Aegean figs harvested in season and dispatched under cold chain conditions.",
+        specs: ["Varietal: Regional Black and Green Figs", "Logistics: Cold Chain / Protective Trays", "Capacity: Details provided by business", "Market: Open to B2B and Export discussions"],
+        image: "/images/hero.png",
       },
       {
         id: "fig-paste",
-        name: "Industrial & Gourmet Fig Paste",
-        category: "Processed Ingredients",
-        desc: "100% natural, additive-free fig purée with seeded/seeded-free options crafted for luxury confectionery and artisanal bakeries.",
-        specs: ["Added Sugar: 0% (Pure Fruit Fructose)", "Brix Rating: 68-72°", "Certifications: Halal, Kosher, FSSC 22000", "Packaging: 12.5 kg Aseptic Bag-in-Box"],
-        image: "/images/aegean-terroir.png"
+        name: "Fig Paste & Processed Ingredients",
+        category: "Industrial Ingredients",
+        desc: "Natural fig paste suitable for commercial food manufacturing and bakery applications.",
+        specs: ["Usage: Food Processing & Bakery", "Additives: Free from added sugars and additives", "Analysis: Pending verification", "Packaging: Industrial Aseptic Packaging"],
+        image: "/images/aegean-terroir.png",
       },
       {
         id: "olive-oil",
-        name: "Early Harvest Cold-Pressed Extra Virgin Olive Oil",
-        category: "Olive Reserve",
-        desc: "Pressed within 4 hours of early October harvest from green Aegean olives, boasting exceptionally high polyphenol levels.",
-        specs: ["Acidity: <0.3%", "Polyphenol Count: >450 mg/kg", "Extraction: 21°C Cold-Extraction", "Bottle: UV-Protected Dark Glass / 500ml"],
-        image: "/images/engineering.png"
-      }
-    ]
+        name: "Aegean Olive Oil Selection",
+        category: "Complementary Reserve",
+        desc: "Cold-pressed extra virgin olive oil obtained from Aegean groves.",
+        specs: ["Bottling: Dark Glass Bottle / Tin", "Method: Cold-Pressed Extraction", "Details: Business information will be added", "Specs: Technical information is pending verification"],
+        image: "/images/engineering.png",
+      },
+    ],
   },
   nursery: {
-    tag: "SECTION 04 — GENETICS & NURSERY",
-    title: "Clonal Breeding & Certified Sapling Nursery",
-    subtitle: "High-Yield, Pathogen-Free Tissue Culture Saplings for Future Commercial Orchards",
-    desc: "The GERGA Nursery operates as the regional R&D center for virus-indexed, true-to-type, high-fruiting grafted and tissue-culture fig saplings.",
+    tag: "SECTION 04 — SAPLING PRODUCTION",
+    title: "Fig Sapling Production & Varietal Authenticity",
+    subtitle: "Healthy Sapling Supply for Commercial Orchards",
+    desc: "GERGA believes that the key to orchard productivity lies in healthy, true-to-type saplings. We provide high-value fig sapling varieties suitable for commercial cultivation.",
+    disclaimer: "Production and capacity details will be provided by the business.",
     features: [
-      { title: "Virus-Indexed Clonal Selection", desc: "Laboratory-verified disease-free mother stock." },
-      { title: "Rapid Fruit Production", desc: "Architectural root systems yielding commercial crops from year 2." },
-      { title: "Geographical Adaptability", desc: "Engineered genetics thriving across diverse soil and climate profiles." }
+      {
+        title: "True-to-Type Authenticity",
+        desc: "Preserving mother stock adapted to regional conditions.",
+      },
+      {
+        title: "Root System & Vigour",
+        desc: "Balanced root architecture enabling rapid field establishment.",
+      },
+      {
+        title: "Technical Guidance",
+        desc: "Advisory support on planting procedures and post-planting care.",
+      },
     ],
-    stats: [
-      { label: "Annual Nursery Capacity", value: "250,000+" },
-      { label: "Varietal Purity Guarantee", value: "100%" }
-    ]
   },
   engineering: {
-    tag: "SECTION 05 — CONSULTANCY & IMPLEMENTATION",
-    title: "Industrial Orchard Engineering",
-    subtitle: "Turnkey Commercial Fig Orchard Setup and Precision Agricultural Advisory",
-    p1: "We provide complete engineering oversight for international investors and commercial landowners, from initial soil chemistry to automated harvest management.",
+    tag: "SECTION 05 — FIELD SERVICES",
+    title: "Professional Orchard Establishment & Field Services",
+    subtitle: "Technical Support from Soil Preparation to First Harvest",
+    p1: "We offer professional consultancy and field execution for investors and growers establishing new fig orchards, covering layout planning, irrigation design, and planting.",
+    disclaimer: "Technical information and feasibility models are pending verification.",
     services: [
-      { name: "Soil & Micro-Climate Mapping", desc: "GPS-driven soil profile diagnostics and airflow layout optimization." },
-      { name: "Precision Drip Irrigation Design", desc: "IoT-enabled moisture sensors and water-conserving fertigation loops." },
-      { name: "Canopy Architecture Protocols", desc: "Pruning training systems maximizing sunlight penetration and yield per hectare." },
-      { name: "10-Year ROI & Yield Modeling", desc: "Financial feasibility studies and commercial forecasting models." }
-    ]
+      {
+        name: "Site Analysis & Layout",
+        desc: "Evaluating land topography, slope, and soil suitability for fig cultivation.",
+      },
+      {
+        name: "Irrigation & Infrastructure",
+        desc: "Designing drip irrigation systems to optimize water use efficiency.",
+      },
+      {
+        name: "Planting & Training Systems",
+        desc: "Precision sapling spacing and canopy formation protocols.",
+      },
+      {
+        name: "Field Advisory Services",
+        desc: "Structuring seasonal maintenance, pruning, and nutrition calendars.",
+      },
+    ],
   },
   academy: {
-    tag: "SECTION 06 — KNOWLEDGE & RESEARCH",
-    title: "GERGA Academy & Sustainability",
-    subtitle: "Bridging Millennia of Heritage Wisdom with Modern Agtech Innovation",
+    tag: "SECTION 06 — ACADEMY & KNOWLEDGE",
+    title: "GERGA Academy & Agricultural Knowledge",
+    subtitle: "Combining Heritage Practice with Technical Insights",
     cards: [
-      { title: "Biodiversity & Soil Vitality", text: "Replacing synthetic fertilizers with custom composts and cover cropping to rebuild soil microbiome richness." },
-      { title: "Water Footprint Stewardship", text: "Sub-surface soil hydration sensors and nocturnal irrigation protocols protecting groundwater tables." },
-      { title: "Chamber & Farmer Masterclasses", text: "Empowering regional growers with organic certification workshops and pruning mastery." }
-    ]
+      {
+        title: "Soil Vitality & Stewardship",
+        text: "Practices supporting soil organic matter and long-term land productivity.",
+      },
+      {
+        title: "Efficient Water Resource Management",
+        text: "Water-conserving irrigation techniques and soil hydration management.",
+      },
+      {
+        title: "Practical Cultivation Insights",
+        text: "Guidance on pruning techniques, pest monitoring, and timely harvesting.",
+      },
+    ],
+  },
+  b2bMeeting: {
+    tag: "SECTION 07 — EXHIBITION MEETING",
+    title: "Meet GERGA at the exhibition.",
+    subtitle: "Let’s discuss product sourcing, wholesale supply, fig saplings, orchard establishment and agricultural partnerships.",
+    form: {
+      fullName: "Full Name",
+      company: "Company",
+      country: "Country",
+      email: "Email",
+      phone: "Phone",
+      areaOfInterest: "Area of Interest",
+      message: "Message",
+      preferredLanguage: "Preferred Language",
+      submit: "Submit Meeting Request",
+      submitting: "Submitting...",
+      successMsg: "Your meeting request has been submitted successfully. We will get in touch with you shortly.",
+      errorMsg: "An error occurred while submitting the form. Please check your information and try again.",
+      devNotice: "Development Note: B2B form is connected to the live API endpoint (`/api/b2b-meeting`).",
+      selectInterest: "Please select an area of interest",
+      interests: {
+        supply: "Product Supply",
+        wholesale: "Wholesale",
+        saplings: "Saplings",
+        orchard: "Orchard Establishment",
+        consultancy: "Consultancy",
+        distribution: "Distribution",
+        other: "Other",
+      },
+      languages: {
+        tr: "Türkçe",
+        en: "English",
+      },
+    },
   },
   gallery: {
-    tag: "SECTION 07 — VISUAL ARCHIVE",
-    title: "Framing Soil and Craft",
-    subtitle: "Museum-Quality Photographic Moments from the GERGA Ecosystem",
-    categories: ["All", "Orchards", "Harvest", "Laboratory", "Landscapes"]
-  },
-  whyUs: {
-    tag: "SECTION 08 — TRUST & VALUES",
-    title: "Why Partner with GERGA?",
-    subtitle: "A Dependable, High-Integrity Partner for International Trade & Investment",
-    timeline: [
-      { year: "1978", title: "Foundations", desc: "Family-owned fig cultivation begins in the high mountains of Aydın." },
-      { year: "2010", title: "Modernization", desc: "Integration of state-of-the-art cold chain storage and organic processing." },
-      { year: "2018", title: "Global Expansion", desc: "Direct export operations launched to Europe, North America, and Gulf countries." },
-      { year: "2026", title: "Orchard Engineering", desc: "Launch of tissue-culture sapling facilities and turnkey agro-consultancy." }
-    ],
-    values: [
-      { title: "Zero Residue Guarantee", desc: "Every export batch undergoes rigorous multi-residue testing in certified labs." },
-      { title: "Surgical Logistics Execution", desc: "Strict adherence to cold chain temperature protocols and delivery timelines." },
-      { title: "Ethical Trade Stewardship", desc: "Supporting local farming communities through Fair Trade principles and fair pricing." }
-    ]
+    tag: "SECTION 08 — GALLERY",
+    title: "Aegean Agriculture Visual Archive",
+    subtitle: "Representative Visual Selection",
+    disclaimer: "Visuals are representative. Authentic business photography will be updated before the exhibition.",
+    categories: ["All", "Orchard", "Harvest", "Field", "Landscapes"],
   },
   contact: {
-    tag: "SECTION 09 — EXHIBITION & CONTACT DESK",
-    title: "Exhibition Stand & B2B Partner Desk",
-    subtitle: "Direct Connect for Trade Delegates, Importers, Commercial Distributors, and Investors",
-    cardTitle: "GERGA International Business Card",
-    scanQr: "Scan with your phone camera to instantly save our vCard contact info to your phonebook.",
+    tag: "SECTION 09 — CONTACT & DIGITAL CARD",
+    title: "Digital Business Card & Contact",
+    subtitle: "Direct Access for Exhibition Visitors & Business Partners",
+    cardTitle: "GERGA Digital Contact Card",
+    scanQr: "Scan the QR code with your smartphone camera to save our digital contact details.",
     downloadVcard: "Download vCard (.vcf)",
-    directWhatsapp: "Instant WhatsApp Desk",
-    addressTitle: "Headquarters & Terroir Location",
-    address: "Büyük Menderes Basin, Aydın / İZMİR — TURKEY",
-    emailTitle: "B2B Trade & Advisory Email",
-    email: "exhibition@gerga.co",
-    phoneTitle: "International Trade Line",
+    directWhatsapp: "Contact via WhatsApp",
+    pdfCatalogTitle: "Product & Services Catalog (PDF)",
+    pdfCatalogStatus: "Coming Soon (Will be updated before exhibition)",
+    addressTitle: "Address",
+    address: "Büyük Menderes Basin, Aydın / TURKEY",
+    emailTitle: "Email",
+    email: "info@gerga.co",
+    phoneTitle: "Phone",
     phone: "+90 (850) 885 43 74",
-    fairsTitle: "Upcoming & Attended Trade Fairs",
-    fairs: ["Fruit Logistica (Berlin)", "Gulfood (Dubai)", "Anuga (Cologne)", "SIAL (Paris)"]
+    fairsTitle: "Targeted Trade Exhibitions",
+    fairs: ["International Agri-Food Exhibitions", "B2B Trade Meetings"],
   },
   footer: {
-    rights: "© 2026 GERGA. All rights reserved. Premium Aegean Agricultural Experience.",
-    tagline: "From Ancient Aegean Soils to World Markets.",
-    switchLang: "Switch Language / Dil Değiştir",
-    legalNotice: "Designed exclusively for international trade fairs, investor presentations, and B2B delegations."
+    rights: "© 2026 GERGA. All rights reserved.",
+    tagline: "Aegean Figs, Sapling Production & Orchard Establishment.",
+    switchLang: "Switch Language",
+    legalNotice: "This website is designed for exhibition presentation and B2B informative purposes. Unverified details will be updated by the business.",
   },
   productModal: {
     close: "Close",
-    requestSample: "Request Exhibition Sample",
-    technicalSpecs: "Technical Specifications & Certifications",
-    origin: "Origin: Aydın / Aegean Basin, Turkey",
-  }
+    requestSample: "Request a Meeting",
+    technicalSpecs: "Information & Status",
+    origin: "Origin: Aegean Basin, Turkey",
+    disclaimer: "Supporting documents will be shared upon request.",
+  },
 };

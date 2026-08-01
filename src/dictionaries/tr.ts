@@ -1,199 +1,250 @@
 export const tr = {
   meta: {
-    title: "GERGA — Ege'nin Kadim Mirası, Geleceğin Tarım Vizyonu | Uluslararası Sergi Sunumu",
-    description: "GERGA, Ege havzasının en seçkin incir, fidan ve tarım mühendisliği çözümlerini sunan premium bir agro-markadır. Uluslararası fuar ve yatırımcı sunumuna özel hazırlanmıştır.",
-    keywords: "GERGA, incir, sarılop, kuru incir, fidanlık, bahçe mühendisliği, Ege tarımı, Aydın inciri, organik incir, agro-ihracat, Fruit Logistica, Gulfood",
+    title: "GERGA | Ege İnciri, Fidan ve Bahçe Kurulumu",
+    description: "GERGA’nın Ege inciri ürünlerini, incir fidanlarını, bahçe kurulumu hizmetlerini ve tarımsal iş birliği olanaklarını keşfedin.",
+    keywords: "GERGA, Ege inciri, kuru incir, incir fidanı, bahçe kurulumu, tarım danışmanlığı, tarımsal iş birliği",
   },
   nav: {
-    story: "Hikâyemiz",
-    aegean: "Ege Terroir",
+    intro: "GERGA",
+    aegean: "Ege & İncir",
     products: "Ürünler",
     nursery: "Fidanlık",
-    engineering: "Mühendislik",
+    engineering: "Bahçe Kurulumu",
     academy: "Akademi",
+    b2bMeeting: "Fuar Görüşmesi",
     gallery: "Galeri",
-    whyUs: "Neden GERGA",
     contact: "İletişim",
-    exhibitionBadge: "B2B Fuar Sunumu",
+    exhibitionBadge: "B2B Fuar Görüşmesi",
   },
   hero: {
-    subtitle: "EGE HAVZASI • ULUSLARARASI SERGİ SUNUMU",
-    title: "Toprağın Kadim Sanatı,",
-    titleGold: "Mühendisliğin Zirvesi.",
-    manifesto: "Sadece incir yetiştirmiyoruz; bilim, toprak saygısı ve müze kalitesinde standartlarla Ege tarımının geleceğini mimari bir hassasiyetle inşa ediyoruz.",
-    primaryCta: "Koleksiyonu Keşfet",
-    secondaryCta: "Fuar İletişim Masası",
-    metrics: [
-      { label: "Yıllık Güneşlenme", value: "300+ Gün" },
-      { label: "Saflık Oranı", value: "%100 Organik" },
-      { label: "İhracat Coğrafyası", value: "35+ Ülke" },
-    ]
+    overline: "EGE’DEN DOĞAN TARIMSAL EKOSİSTEM",
+    headline: "İncirden fidana, topraktan geleceğe.",
+    description: "GERGA; seçkin Ege ürünlerini, incir fidanı üretimini, profesyonel bahçe kurulumunu ve uygulamalı tarımsal bilgiyi aynı marka altında bir araya getirir.",
+    primaryCta: "GERGA’yı Keşfedin",
+    secondaryCta: "Görüşme Talep Edin",
+    disclaimer: "Görseller temsilîdir. İşletme detayları doğrulama aşamasındadır.",
   },
-  story: {
-    tag: "Bölüm 01 — KÖKLERİ VE VİZYON",
-    title: "Gelenekten Geleceğe Uzanan Bir Ege Efsanesi",
-    p1: "Büyük Menderes Ovası'nın binlerce yıllık mineral zenginliği ve imbat rüzgârları ile beslenen GERGA, geleneksel tarım anlayışını dünya standartlarında bir kalite manifestosuna dönüştürüyor.",
-    p2: "Bizim için her incir tanesi; doğru toprak analizi, hassas budama teknikleri ve doğanın ritmine duyulan derin saygının bir meyvesidir. Ürünlerimiz, endüstriyel kitle üretiminin ötesinde, seçkin gurme ve endüstriyel alıcılar için özel olarak sınıflandırılır.",
-    quote: "Tarım, doğa ile insan zekasının kusursuz bir simfonisidir.",
-    quoteAuthor: "GERGA Kurucu Yönetimi",
-    highlights: [
-      { number: "01", title: "İzlenebilir Üretim", desc: "Fidandan son pakete kadar %100 şeffaf dijital takip." },
-      { number: "02", title: "Küresel Sertifikasyon", desc: "GLOBALG.A.P., USDA Organic ve ISO 22000 standartları." },
-      { number: "03", title: "Seçkin Seçilim", desc: "Hasadın yalnızca en üst %15'lik premium kalitesi GERGA imzası taşır." }
-    ]
+  intro: {
+    tag: "BÖLÜM 01 — GERGA HAKKINDA",
+    title: "Tek Çatı Altında Yeni Nesil Tarım Markası",
+    description: "GERGA; Ege havzasının bereketi ve tarımsal birikimi ışığında kurulan entegre bir tarım vizyonudur. Yalnızca ürün sunmakla kalmıyor; doğru fidan seçimi, sahada bilimsel bahçe kurulumu ve teknik bilgi birikimi ile tarımsal üretimin her adımında güvenilir bir iş ortağı olmayı hedefliyoruz.",
+    pillars: [
+      {
+        title: "Seçkin Ege Ürünleri",
+        desc: "Bölgenin özgün nitelik taşıyan incir ve tarımsal mahsullerinin titizlikle sınıflandırılması.",
+      },
+      {
+        title: "Fidan Üretimi",
+        desc: "Ticari yetiştiriciliğe uygun, çeşide doğru ve sağlıklı incir fidanı temini.",
+      },
+      {
+        title: "Bahçe Kurulumu",
+        desc: "Toprak hazırlığından dikime, alan planlamasından altyapıya profesyonel saha hizmetleri.",
+      },
+      {
+        title: "Tarımsal Akademi",
+        desc: "Saha tecrübesi ile teknik bilginin üreticiler ve yatırımcılarla paylaşılması.",
+      },
+    ],
   },
   aegean: {
-    tag: "Bölüm 02 — COĞRAFİ MİRAS",
-    title: "Ege Terroir'ı ve Mikro-Klima Mucizesi",
-    subtitle: "Dünyanın En İnce Kabuklu, En Yüksek Şeker Oranlı İncirinin Gizemi",
-    description: "Büyük Menderes Havzası, Akdeniz iklimi ile kıtasal havanın kesiştiği, kendine has nem dengesi ve imbat rüzgârlarıyla dünyanın en kaliteli incir yetiştiriciliği için benzersiz bir mikroklimaya sahiptir.",
+    tag: "BÖLÜM 02 — COĞRAFİ KÖKEN",
+    title: "Ege Havzası ve İncirin Kadim Mirası",
+    subtitle: "Doğal İklim Dengesi ve Toprak Yapısı",
+    description: "Ege bölgesi, yüzyıllardır dünyanın en seçkin incirlerinin yetiştiği benzersiz bir mikroklimaya sahiptir. Bölgenin doğal rüzgâr akımları ve mineral zenginliği, incir meyvesinin kendine has dokusunu ve tat profilini biçimlendirir.",
+    disclaimer: "Teknik veri doğrulama aşamasındadır. Spesifik mikroklima verileri talep üzerine paylaşılacaktır.",
     cards: [
       {
-        title: "Kuzey Rüzgârı (İmbat)",
-        desc: "İncirin kuruma döneminde gece ve gündüz sıcaklık farkını dengeleyerek kabuğun incelmesini ve doğal ballanmasını sağlar.",
-        stat: "22-26°C",
-        statLabel: "Optimum Nem Dengesi"
+        title: "Doğal Rüzgâr Doygunluğu",
+        desc: "Olgunlaşma döneminde gece ile gündüz arasındaki nem dengesini sağlayan doğal Ege rüzgârları.",
       },
       {
-        title: "Alüvyon Zenginliği",
-        desc: "Menderes Nehri'nin çağlar boyu taşıdığı mineral ve humik asitçe zengin toprağı, ağaçlarımızın kök derinliğini besler.",
-        stat: "pH 6.8 - 7.2",
-        statLabel: "Mükemmel Toprak Derecesi"
+        title: "Havza Toprak Karakteri",
+        desc: "Kök gelişimini destekleyen alüvyal ve süzek toprak yapısı.",
       },
       {
-        title: "Güneş Radrasyonu",
-        desc: "Yıllık 3.000 saati aşan güneşlenme süresi, meyve içi doğal fruktoz krizantemini mükemmelleştirir.",
-        stat: "3.200 Saat",
-        statLabel: "Yıllık Güneş Işığı"
-      }
-    ]
+        title: "Güneşlenme Süresi",
+        desc: "Meyvenin doğal kuruma sürecini destekleyen yüksek güneşlenme potansiyeli.",
+      },
+    ],
   },
   products: {
-    tag: "Bölüm 03 — SEÇKİN KOLEKSİYON",
-    title: "GERGA Hasat Seçkisi",
-    subtitle: "Uluslararası Ticaret ve Premium Perakende İçin Hazırlanmış Katma Değerli Ürün Grubu",
-    viewDetails: "İntelektüel Özellikleri İncele",
+    tag: "BÖLÜM 03 — ÜRÜN YAKLAŞIMI",
+    title: "Ürün Seçkisi ve Kalite Yaklaşımı",
+    subtitle: "Fuar Katılımcıları ve Toptan Alıcılar İçin Ürün Portföyü",
+    disclaimer: "Ürün portföyü fuar öncesinde güncellenecektir. Belge bilgisi talep üzerine paylaşılacaktır.",
+    viewDetails: "İncele ve Bilgi Al",
     items: [
       {
-        id: "sarilop-dry",
-        name: "Organik Aydın Sarılop Kuru İncir",
-        category: "Gurme Kurutulmuş Serisi",
-        desc: "Coğrafi işaretli Aydın dağlarından el ile toplanmış, doğal güneşte kurutulmuş, sıfır kimyasal kalıntılı dünya lideri altın incir.",
-        specs: ["Kalibre: 1 - 4 (Oversized Premium)", "Nem: %18 - %22", "Sertifika: BIO Organic, GlobalGAP", "Ambalaj: 250g, 500g, 5kg Ahşap & Vakumlu Katlama"],
-        image: "/images/product-fig.png"
+        id: "dried-figs",
+        name: "Ege Kuru İncir Seçkisi",
+        category: "Kurutulmuş Mahsul",
+        desc: "Ege yöresinden tedarik edilen, kalite standartlarına göre ayrıştırılmış kuru incir serisi.",
+        specs: ["Çeşit: Aydın Sarılop ve Yöresel Çeşitler", "Ambalaj: Toptan ve Dökme Kasa Seçenekleri", "Belge Bilgisi: Talep üzerine paylaşılacaktır", "Tedarik Durumu: Fuar Öncesi Güncellenecektir"],
+        image: "/images/product-fig.png",
       },
       {
-        id: "bursa-black",
-        name: "Taze Dağ & Bursa Siyahı İnciri",
-        category: "Taze İhracat Serisi",
-        desc: "Soğuk zincir kıran özel iklimli ambalajlarda 24 saat içinde Avrupa ve Orta Doğu pazarlarına sevk edilen dolgun taze incir.",
-        specs: ["Çap: 55mm - 65mm", "Brix Derecesi: > 21°", "Kasa Tipi: Viyollü Hava Alır Özel Kutu", "Raf Ömrü: Soğuk Zincirde 18 Gün"],
-        image: "/images/hero.png"
+        id: "fresh-figs",
+        name: "Taze İncir Çeşitleri",
+        category: "Taze Ürün",
+        desc: "Sezonunda toplanan, soğuk zincir prensiplerine uygun sevk edilen taze Ege incirleri.",
+        specs: ["Çeşit: Siyah ve Yeşil Bölge İncirleri", "Sevkiyat: Soğuk Zincir / Viyollü Kasa", "Kapasite: İşletme tarafından sağlanacaktır", "Pazar: İç Pazar ve İhracat Görüşmelerine Açık"],
+        image: "/images/hero.png",
       },
       {
         id: "fig-paste",
-        name: "Endüstriyel & Gurme İncir Ezmesi",
-        category: "İşlenmiş Ürünler",
-        desc: "Pastacılık, çikolata ve gurme fırıncılık sektörü için tohumlu/tohumsuz, katkısız %100 doğal püre ve ezme.",
-        specs: ["Şeker: İlave Şeker İçermez", "Brix: 68-72°", "Sertifika: Halal, Kosher, FSSC 22000", "Ambalaj: 12.5 kg Aseptik Bag-in-Box"],
-        image: "/images/aegean-terroir.png"
+        name: "İncir Ezmesi ve İşlenmiş Mahsul",
+        category: "Endüstriyel Ham Maddeler",
+        desc: "Gıda imalatı ve endüstriyel kullanıma uygun doğal incir ezmesi ve türev ürünleri.",
+        specs: ["Kullanım: Gıda & Fırıncılık Sektörü", "Katkı Maddesi: İlave şeker ve katkı içermez", "Analiz Raporu: Doğrulama aşamasında", "Ambalaj: Endüstriyel Aseptik Ambalaj"],
+        image: "/images/aegean-terroir.png",
       },
       {
         id: "olive-oil",
-        name: "Erken Hasat Soğuk Sıkım Zeytinyağı",
-        category: "Zeytin Havzası",
-        desc: "Zeytin bahçelerimizden Ekim ayında henüz yeşilken toplanan, yüksek polifenollü ve düşük asitli özel mahsul.",
-        specs: ["Asitlik: <%0.3", "Polifenol: >450 mg/kg", "Yöntem: 21°C Soğuk Sıkım Ekstraksiyon", "Şişe: UV Korumalı Koyu Cam / 500ml"],
-        image: "/images/engineering.png"
-      }
-    ]
+        name: "Ege Zeytinyağı Seçkisi",
+        category: "Tamamlayıcı Ürünler",
+        desc: "Ege bahçelerinden elde edilen soğuk sıkım natürel sızma zeytinyağı.",
+        specs: ["Dolum: Koyu Cam Şişe / Teneke", "Nitelik: Soğuk Sıkım (Cold-Pressed)", "İşletme Bilgisi: Talep üzerine sağlanacaktır", "Spesifikasyon: Teknik veri doğrulama aşamasında"],
+        image: "/images/engineering.png",
+      },
+    ],
   },
   nursery: {
-    tag: "Bölüm 04 — GENETİK VE FİDANLIK",
-    title: "Klon Islahı & Sertifikalı İncir Fidanlığı",
-    subtitle: "Geleceğin Bahçeleri İçin Yüksek Verimli, Hastalıksız Dokı Kültürü Fidanları",
-    desc: "GERGA Fidanlığı; virüsten ari, ismine doğru, yüksek meyve tutum yeteneğine sahip aşılı ve doku kültürü kökenli incir fidanı üretiminde bölgenin lider Ar-Ge merkezidir.",
+    tag: "BÖLÜM 04 — FİDAN ÜRETİMİ",
+    title: "İncir Fidanı Üretimi ve Çeşit Doğruluğu",
+    subtitle: "Ticari Bahçeler İçin Sağlıklı Fidan Temini",
+    desc: "GERGA; incir yetiştiriciliğinde verimliliğin anahtarının çeşide doğru ve sağlıklı fidan kullanımı olduğuna inanır. Üretim alanlarımızda ticari değeri yüksek incir çeşitlerinin fidan temini gerçekleştirilmektedir.",
+    disclaimer: "Üretim ve kapasite bilgileri işletme tarafından sağlanacaktır.",
     features: [
-      { title: "Virüssüz Klon Seçilimi", desc: "Laboratuvar ortamında test edilmiş hastalıksız anaç materyali." },
-      { title: "Hızlı Meyveye Yatış", desc: "2. yıldan itibaren ticari değere ulaşan güçlü kök mimarisi." },
-      { title: "Adaptasyon Garantisi", desc: "Farklı toprak tiplerine (kireçli, tınlı, kumlu) tam uyumlu genetik." }
+      {
+        title: "Çeşide Doğruluk",
+        desc: "Bölgeye adapte olmuş ticari değer taşıyan anaç çeşidinin korunması.",
+      },
+      {
+        title: "Kök Gelişimi ve Form",
+        desc: "Sahada hızlı adaptasyon sağlayan güçlü ve dengeli kök yapısı.",
+      },
+      {
+        title: "Teknik Destek",
+        desc: "Dikim öncesi ve sonrası fidan bakımına dair yönlendirme.",
+      },
     ],
-    stats: [
-      { label: "Yıllık Fidan Kapasitesi", value: "250.000+" },
-      { label: "İsme Doğruluk Garantisi", value: "%100" }
-    ]
   },
   engineering: {
-    tag: "Bölüm 05 — PROJE VE DANIŞMANLIK",
-    title: "Endüstriyel Bahçe Mühendisliği",
-    subtitle: "Anahtar Teslim Ticari İncir Bahçesi Kurulumu ve İnovatif Tarım Danışmanlığı",
-    p1: "Uluslararası yatırımcılar ve ticari arazi sahipleri için toprağın analizinden ilk panam hasadına kadar tüm süreçleri mühendislik disipliniyle yönetiyoruz.",
+    tag: "BÖLÜM 05 — SAHA HİZMETLERİ",
+    title: "Profesyonel Bahçe Kurulumu ve Saha Hizmetleri",
+    subtitle: "Topraktan İlk Hasada Kadar Teknik Destek",
+    p1: "Yeni bir incir bahçesi kurmak isteyen yatırımcılar ve üreticiler için alan planlamasından altyapı kurulumuna kadar profesyonel danışmanlık ve saha uygulaması sunuyoruz.",
+    disclaimer: "Teknik veri ve fizibilite modelleri doğrulama aşamasındadır.",
     services: [
-      { name: "Toprak & Mikro-Klima Haritalama", desc: "GPS tabanlı toprak profil analizleri ve hava akım optimizasyonu." },
-      { name: "Hassas Damla Sulama Tasarımı", desc: "Su kaynaklarını koruyan akıllı sensör entegreli otomasyon sistemleri." },
-      { name: "Ağaç Mimarisi ve Budama Protokolü", desc: "Maksimum güneş ışığı alımı sağlayan modern terbiye sistemleri." },
-      { name: "Yatırım Geri Dönüş Hesaplaması", desc: "10 yıllık ticari verimlilik ve finansal fizibilite modellemeleri." }
-    ]
+      {
+        name: "Saha Analizi ve Planlama",
+        desc: "Arazi yapısının, eğimin ve toprak karakterinin incir yetiştiriciliğine uygunluğunun değerlendirilmesi.",
+      },
+      {
+        name: "Sulama ve Altyapı Düzenlemesi",
+        desc: "Verimli su kullanımı sağlayan damla sulama altyapısının projelendirilmesi.",
+      },
+      {
+        name: "Dikim ve Terbiye Sistemleri",
+        desc: "Fidanların doğru aralıklarla dikimi ve taç oluşturma yönlendirmesi.",
+      },
+      {
+        name: "Saha Danışmanlığı",
+        desc: "Bahçenin yıllık bakım, budama ve besleme takviminin oluşturulması.",
+      },
+    ],
   },
   academy: {
-    tag: "Bölüm 06 — BİLGİ SEVERLİK",
-    title: "GERGA Akademi & Sürdürülebilirlik",
-    subtitle: "Geleneksel Bilgeliği Modern Agro-Teknoloji ile Buluşturuyoruz",
+    tag: "BÖLÜM 06 — BİLGİ VE AKADEMİ",
+    title: "GERGA Akademi ve Tarımsal Birikim",
+    subtitle: "Geleneksel Deneyimi Teknik Bilgiyle Buluşturuyoruz",
     cards: [
-      { title: "Biyolojik Çeşitlilik & Toprak Sağlığı", text: "Kimyasal gübre yerine kompost ve örtü bitkileri ile toprağın mikroflora dengesini yeniden canlandırıyoruz." },
-      { title: "Su Ayak İzi Yönetimi", text: "Yeraltı su kaynaklarını koruyan meteorolojik nem ölçerler ve gece sulama teknikleri." },
-      { title: "Çiftçi & Mühendis Eğitimi", text: "Bölge üreticilerine ücretsiz budama, zararlı mücadelesi ve organik sertifikasyon seminerleri." }
-    ]
+      {
+        title: "Toprak Sağlığı ve Sürdürülebilirlik",
+        text: "Toprağın organik madde yapısını koruyan ve uzun vadeli verimliliği destekleyen tarım uygulamaları.",
+      },
+      {
+        title: "Su Kaynaklarının Verimli Kullanımı",
+        text: "Kuraklık riskine karşı tasarruflu sulama teknikleri ve nem yönetimi rehberliği.",
+      },
+      {
+        title: "Uygulamalı Yetiştiricilik Bilgisi",
+        text: "Budama, hastalık takibi ve doğru zamanlı hasat tekniklerinin aktarılması.",
+      },
+    ],
+  },
+  b2bMeeting: {
+    tag: "BÖLÜM 07 — FUAR GÖRÜŞMESİ",
+    title: "Fuarda GERGA ile tanışın.",
+    subtitle: "Ürün tedariği, toptan satış, fidan temini, bahçe kurulumu ve tarımsal iş birlikleri hakkında görüşmek için bizimle iletişime geçin.",
+    form: {
+      fullName: "Ad Soyad",
+      company: "Şirket",
+      country: "Ülke",
+      email: "E-posta",
+      phone: "Telefon",
+      areaOfInterest: "İlgi Alanı",
+      message: "Mesaj",
+      preferredLanguage: "Tercih Edilen Dil",
+      submit: "Görüşme Talebi Gönder",
+      submitting: "Gönderiliyor...",
+      successMsg: "Görüşme talebiniz başarıyla iletildi. En kısa sürede sizinle iletişime geçeceğiz.",
+      errorMsg: "Form gönderiminde bir sorun oluştu. Lütfen bilgilerinizi kontrol edip tekrar deneyin.",
+      devNotice: "Development Notu: B2B formu canlı API endpointine (`/api/b2b-meeting`) bağlıdır.",
+      selectInterest: "Lütfen bir ilgi alanı seçin",
+      interests: {
+        supply: "Ürün Tedariği",
+        wholesale: "Toptan Satış",
+        saplings: "Fidan",
+        orchard: "Bahçe Kurulumu",
+        consultancy: "Danışmanlık",
+        distribution: "Distribütörlük",
+        other: "Diğer",
+      },
+      languages: {
+        tr: "Türkçe",
+        en: "English",
+      },
+    },
   },
   gallery: {
-    tag: "Bölüm 07 — GÖRSEL ARŞİV",
-    title: "Toprağın ve Emeğin Kadrajı",
-    subtitle: "GERGA Ekosisteminden Müze Kalitesinde Anlar",
-    categories: ["Tümü", "Bahçelerimiz", "Hasat", "Laboratuvar", "Manzara"]
-  },
-  whyUs: {
-    tag: "Bölüm 08 — GÜVEN VE DEĞERLER",
-    title: "Neden GERGA İle Ortaklık?",
-    subtitle: "Küresel Alıcılar ve Yatırımcılar İçin Güvenilir Tedarik Zinciri",
-    timeline: [
-      { year: "1978", title: "Kökler", desc: "Aydın dağlarında aile gelenekleriyle başlayan ilk geleneksel incir yetiştiriciliği." },
-      { year: "2010", title: "Modernizasyon", desc: "Endüstriyel işleme ve soğuk hava depolarının entegre edilmesi." },
-      { year: "2018", title: "Küresel Açılım", desc: "Avrupa ve Kuzey Amerika pazarlarına doğrudan organik ihracat." },
-      { year: "2026", title: "Bahçe Mühendisliği", desc: "Doku kültürü fidanlığı ve anahtar teslim agro-projelerin lansmanı." }
-    ],
-    values: [
-      { title: "%100 Kalıntı Sertifikasız Güvence", desc: "Her parti ürün uluslararası akredite laboratuvarlarda analiz edilir." },
-      { title: "Kusursuz Lojistik Zamanlaması", desc: "Sözleşmeli teslimat tarihlerine ve soğuk zincir gereksinimlerine kesin uyum." },
-      { title: "Sürdürülebilir Ticari Etik", desc: "Adil ticaret (Fair Trade) ilkeleri doğrultusunda yerel üretici desteği." }
-    ]
+    tag: "BÖLÜM 08 — GALERİ",
+    title: "Ege Tarım Ekosistemi Görsel Arşivi",
+    subtitle: "Temsilî Görsel Seçkisi",
+    disclaimer: "Görseller temsilîdir. Gerçek işletme fotoğrafları fuar öncesinde güncellenecektir.",
+    categories: ["Tümü", "Bahçe", "Hasat", "Saha", "Manzara"],
   },
   contact: {
-    tag: "Bölüm 09 — FUAR VE İLETİŞİM",
-    title: "Stant & B2B Görüşme Masası",
-    subtitle: "Uluslararası Distribütörler, Yatırımcılar ve Ticari Alıcılar İçin Doğrudan İletişim",
-    cardTitle: "GERGA Uluslararası Sergi Kartı",
-    scanQr: "Mobil cihazınızla QR kodu taratarak dijital kartvizitimizi anında kaydedebilirsiniz.",
+    tag: "BÖLÜM 09 — İLETİŞİM VE DİJİTAL KART",
+    title: "Dijital Kartvizit ve İletişim",
+    subtitle: "Fuar Ziyaretçileri ve İş Ortakları İçin Doğrudan Erişim",
+    cardTitle: "GERGA Dijital İletişim Kartı",
+    scanQr: "Mobil cihazınızın kamerasıyla QR kodu taratarak dijital iletişim bilgilerimize erişebilirsiniz.",
     downloadVcard: "vCard İndir (.vcf)",
-    directWhatsapp: "WhatsApp İle Hızlı İletişim",
-    addressTitle: "Merkez & Terroir Adresi",
-    address: "Büyük Menderes Havzası, Aydın / İZMİR — TÜRKİYE",
-    emailTitle: "B2B İhracat & Danışmanlık Email",
-    email: "exhibition@gerga.co",
-    phoneTitle: "Uluslararası Ticaret Hattı",
+    directWhatsapp: "WhatsApp İle İletişim",
+    pdfCatalogTitle: "Ürün & Hizmet Kataloğu (PDF)",
+    pdfCatalogStatus: "Yakında (Fuar Öncesi Güncellenecektir)",
+    addressTitle: "Adres Bilgisi",
+    address: "Büyük Menderes Havzası, Aydın / TÜRKİYE",
+    emailTitle: "E-posta",
+    email: "info@gerga.co",
+    phoneTitle: "Telefon",
     phone: "+90 (850) 885 43 74",
-    fairsTitle: "Katıldığımız Uluslararası Farlar",
-    fairs: ["Fruit Logistica (Berlin)", "Gulfood (Dubai)", "Anuga (Köln)", "SIAL (Paris)"]
+    fairsTitle: "Hedeflenen Fuar Görüşmeleri",
+    fairs: ["Uluslararası Tarım & Gıda Farları", "B2B İthalatçı Görüşmeleri"],
   },
   footer: {
-    rights: "© 2026 GERGA. Tüm hakları saklıdır. Premium Ege Tarım Deneyimi.",
-    tagline: "Ege'nin Kadim Topraklarından Dünya Pazarlarına.",
-    switchLang: "Dil Değiştir / Switch Language",
-    legalNotice: "Bu web sitesi uluslararası ticari fuarlar ve yatırımcı sunumları için özel olarak tasarlanmıştır."
+    rights: "© 2026 GERGA. Tüm hakları saklıdır.",
+    tagline: "Ege İnciri, Fidan Üretimi ve Bahçe Kurulumu.",
+    switchLang: "Dil Değiştir",
+    legalNotice: "Bu web sitesi fuar tanıtımı ve B2B bilgilendirme amacıyla hazırlanmıştır. Doğrulanmamış veriler işletme tarafından güncellenecektir.",
   },
   productModal: {
     close: "Kapat",
-    requestSample: "Fuar Numunesi Talep Et",
-    technicalSpecs: "Teknik Spesifikasyonlar & Sertifikasyonlar",
-    origin: "Menşei: Aydın / Ege Havzası",
-  }
+    requestSample: "Görüşme Talep Et",
+    technicalSpecs: "Bilgiler ve Durum",
+    origin: "Köken: Ege Havzası, Türkiye",
+    disclaimer: "Belge bilgisi talep üzerine paylaşılacaktır.",
+  },
 };

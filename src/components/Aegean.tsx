@@ -2,8 +2,9 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Sun, Wind, Mountain, Compass, MapPin } from "lucide-react";
+import { Sun, Wind, Mountain, MapPin, Info } from "lucide-react";
 import { getDictionary } from "@/dictionaries";
+import { MEDIA_CONFIG } from "@/config/media";
 
 interface AegeanProps {
   lang: string;
@@ -11,23 +12,24 @@ interface AegeanProps {
 
 export default function Aegean({ lang }: AegeanProps) {
   const dict = getDictionary(lang);
+  const media = MEDIA_CONFIG.aegeanTerroir;
 
   const icons = [Wind, Mountain, Sun];
 
   return (
-    <section id="aegean" className="py-28 bg-[#090b09] relative overflow-hidden">
+    <section id="aegean" className="py-28 bg-[#090b09] relative overflow-hidden border-t border-white/5">
       {/* Full-width Immersive Photographic Background Banner */}
-      <div className="relative w-full h-[500px] lg:h-[650px] mb-20 overflow-hidden">
+      <div className="relative w-full h-[450px] lg:h-[580px] mb-20 overflow-hidden">
         <Image
-          src="/images/aegean-terroir.png"
-          alt="Aegean Terroir Landscape"
+          src={media.src}
+          alt={media.alt[lang === "en" ? "en" : "tr"]}
           fill
-          className="object-cover object-center filter brightness-90 contrast-110 scale-105"
+          className="object-cover object-center filter brightness-90 contrast-105"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#090b09] via-[#090b09]/50 to-[#090b09]" />
         
-        {/* Overlay Terroir Badge & Title */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 z-10">
+        {/* Overlay Title */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 sm:px-6 z-10">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -37,15 +39,15 @@ export default function Aegean({ lang }: AegeanProps) {
           >
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#d4af37]/40 bg-black/70 backdrop-blur-md mb-6">
               <MapPin className="w-3.5 h-3.5 text-[#d4af37]" />
-              <span className="text-xs font-mono tracking-[0.25em] text-[#d4af37] uppercase">
+              <span className="text-xs font-mono tracking-[0.2em] text-[#d4af37] uppercase">
                 Büyük Menderes Basin • Aydın, Turkey
               </span>
             </div>
 
-            <h2 className="font-serif text-4xl sm:text-6xl lg:text-7xl text-white font-light tracking-tight leading-tight">
+            <h2 className="font-serif text-3xl sm:text-5xl lg:text-6xl text-white font-light tracking-tight leading-tight">
               {dict.aegean.title}
             </h2>
-            <p className="mt-4 text-base sm:text-xl text-gray-300 font-light max-w-2xl">
+            <p className="mt-4 text-sm sm:text-lg text-gray-300 font-light max-w-2xl">
               {dict.aegean.subtitle}
             </p>
           </motion.div>
@@ -53,8 +55,8 @@ export default function Aegean({ lang }: AegeanProps) {
       </div>
 
       {/* Terroir Detail Cards */}
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <div className="flex flex-col md:flex-row items-start justify-between mb-16 gap-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+        <div className="flex flex-col md:flex-row items-start justify-between mb-12 gap-8">
           <div>
             <div className="flex items-center gap-3 mb-3">
               <div className="w-8 h-[1px] bg-[#d4af37]" />
@@ -63,12 +65,18 @@ export default function Aegean({ lang }: AegeanProps) {
               </span>
             </div>
             <h3 className="font-serif text-2xl sm:text-3xl text-white">
-              Microclimate & Soil Parameters
+              Doğal İklim ve Toprak Dengesi
             </h3>
           </div>
-          <p className="text-gray-400 max-w-xl text-sm leading-relaxed font-light">
-            {dict.aegean.description}
-          </p>
+          <div className="flex flex-col max-w-xl">
+            <p className="text-gray-300 text-sm leading-relaxed font-light">
+              {dict.aegean.description}
+            </p>
+            <div className="mt-3 flex items-center gap-2 text-xs font-mono text-gray-400 bg-white/[0.03] p-2.5 rounded-lg border border-white/5">
+              <Info className="w-4 h-4 text-[#d4af37] shrink-0" />
+              <span>{dict.aegean.disclaimer}</span>
+            </div>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -94,15 +102,6 @@ export default function Aegean({ lang }: AegeanProps) {
                   <p className="text-xs text-gray-400 leading-relaxed font-light">
                     {card.desc}
                   </p>
-                </div>
-
-                <div className="mt-8 pt-6 border-t border-white/10 flex flex-col">
-                  <span className="font-serif text-3xl text-[#d4af37] font-semibold">
-                    {card.stat}
-                  </span>
-                  <span className="text-[11px] font-mono tracking-wider text-gray-400 uppercase mt-1">
-                    {card.statLabel}
-                  </span>
                 </div>
               </motion.div>
             );

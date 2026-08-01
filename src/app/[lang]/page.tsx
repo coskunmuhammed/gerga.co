@@ -1,14 +1,14 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import Story from "@/components/Story";
+import Intro from "@/components/Intro";
 import Aegean from "@/components/Aegean";
 import Products from "@/components/Products";
 import Nursery from "@/components/Nursery";
 import Engineering from "@/components/Engineering";
 import Academy from "@/components/Academy";
+import ExhibitionMeeting from "@/components/ExhibitionMeeting";
 import Gallery from "@/components/Gallery";
-import WhyUs from "@/components/WhyUs";
-import Contact from "@/components/Contact";
+import ContactCard from "@/components/ContactCard";
 import Footer from "@/components/Footer";
 
 export default async function Page({
@@ -23,37 +23,37 @@ export default async function Page({
       {/* Sticky Luxury Navigation */}
       <Header lang={lang} />
 
-      {/* 1. Opening Hero */}
+      {/* 1. Hero */}
       <Hero lang={lang} />
 
-      {/* 2. The Story of GERGA */}
-      <Story lang={lang} />
+      {/* 2. GERGA’nın Kısa Tanımı */}
+      <Intro lang={lang} />
 
-      {/* 3. The Aegean Terroir */}
+      {/* 3. Ege ve İncir Kökeni */}
       <Aegean lang={lang} />
 
-      {/* 4. Our Products (Exhibition Collection) */}
+      {/* 4. Ürün Yaklaşımı */}
       <Products lang={lang} />
 
-      {/* 5. Fig Nursery */}
+      {/* 5. Fidan Üretimi */}
       <Nursery lang={lang} />
 
-      {/* 6. Orchard Engineering */}
+      {/* 6. Bahçe Kurulumu ve Saha Hizmetleri */}
       <Engineering lang={lang} />
 
-      {/* 7. GERGA Academy */}
+      {/* 7. GERGA Akademi */}
       <Academy lang={lang} />
 
-      {/* 8. Gallery (Masonry & Lightbox) */}
+      {/* 8. Fuar Görüşmesi ve B2B İletişim */}
+      <ExhibitionMeeting lang={lang} />
+
+      {/* 9. Galeri */}
       <Gallery lang={lang} />
 
-      {/* 9. Why GERGA */}
-      <WhyUs lang={lang} />
+      {/* 10. İletişim ve Dijital Kart */}
+      <ContactCard lang={lang} />
 
-      {/* 10. Contact & Partner Desk */}
-      <Contact lang={lang} />
-
-      {/* 11. Minimalist Luxury Footer */}
+      {/* 11. Footer */}
       <Footer lang={lang} />
     </main>
   );

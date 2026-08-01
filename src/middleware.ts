@@ -5,14 +5,14 @@ import { locales, defaultLocale } from '@/dictionaries';
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Check if pathname already has a supported locale
+  // Check if pathname already starts with a supported locale
   const pathnameHasLocale = locales.some(
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
   );
 
   if (pathnameHasLocale) return NextResponse.next();
 
-  // Exclude static assets, api routes, images, etc.
+  // Exclude static assets, api routes, images, favicon, etc.
   if (
     pathname.startsWith('/_next') ||
     pathname.startsWith('/api') ||
@@ -22,15 +22,28 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  // Redirect to default locale if missing
-  const locale = defaultLocale;
-  request.nextUrl.pathname = `/${locale}${pathname}`;
+  // 1. Check NEXT_LOCALE cookie
+  const cookieLocale = request.cookies.get('NEXT_LOCALE')?.value;
+  let preferredLocale = defaultLocale;
+
+  if (cookieLocale && locales.includes(cookieLocale as any)) {
+    preferredLocale = cookieLocale;
+  } else {
+    // 2. Check Accept-Language header
+    const acceptLanguage = request.headers.get('accept-language') || '';
+    if (acceptLanguage.toLowerCase().includes('tr')) {
+      preferredLocale = 'tr';
+    } else if (acceptLanguage.toLowerCase().includes('en')) {
+      preferredLocale = 'en';
+    }
+  }
+
+  request.nextUrl.pathname = `/${preferredLocale}${pathname}`;
   return NextResponse.redirect(request.nextUrl);
 }
 
 export const config = {
   matcher: [
-    // Match all pathnames except static files & api
     '/((?!api|_next/static|_next/image|favicon.ico|images).*)',
   ],
 };

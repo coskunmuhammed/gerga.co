@@ -31,7 +31,7 @@ export async function generateMetadata({
     title: dict.meta.title,
     description: dict.meta.description,
     keywords: dict.meta.keywords,
-    authors: [{ name: "GERGA Agricultural Innovations" }],
+    authors: [{ name: "GERGA" }],
     openGraph: {
       title: dict.meta.title,
       description: dict.meta.description,
@@ -42,7 +42,7 @@ export async function generateMetadata({
           url: "https://gerga.co/images/hero.png",
           width: 1200,
           height: 630,
-          alt: "GERGA Aegean Terroir",
+          alt: lang === "en" ? "Representative visual of Aegean fig orchards" : "Ege incir bahçelerini temsil eden temsili görsel",
         },
       ],
       locale: lang === "tr" ? "tr_TR" : "en_US",
@@ -51,8 +51,8 @@ export async function generateMetadata({
     alternates: {
       canonical: `https://gerga.co/${lang}`,
       languages: {
-        tr: "https://gerga.co/tr",
-        en: "https://gerga.co/en",
+        "tr-TR": "https://gerga.co/tr",
+        "en": "https://gerga.co/en",
       },
     },
   };
@@ -68,7 +68,11 @@ export default async function RootLayout({
   const { lang } = await params;
 
   return (
-    <html lang={lang} className={`${playfair.variable} ${jakarta.variable} scroll-smooth`}>
+    <html lang={lang === "tr" ? "tr" : "en"} className={`${playfair.variable} ${jakarta.variable} scroll-smooth`}>
+      <head>
+        <link rel="alternate" hrefLang="tr-TR" href="https://gerga.co/tr" />
+        <link rel="alternate" hrefLang="en" href="https://gerga.co/en" />
+      </head>
       <body className="font-sans bg-[#090b09] text-[#f7f5ef] antialiased selection:bg-[#d4af37] selection:text-black">
         {children}
       </body>

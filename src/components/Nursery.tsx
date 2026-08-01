@@ -2,8 +2,9 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Sprout, Dna, ShieldCheck, TrendingUp } from "lucide-react";
+import { Sprout, ShieldCheck, Info } from "lucide-react";
 import { getDictionary } from "@/dictionaries";
+import { MEDIA_CONFIG } from "@/config/media";
 
 interface NurseryProps {
   lang: string;
@@ -11,10 +12,11 @@ interface NurseryProps {
 
 export default function Nursery({ lang }: NurseryProps) {
   const dict = getDictionary(lang);
+  const media = MEDIA_CONFIG.nursery;
 
   return (
-    <section id="nursery" className="py-32 bg-[#090b09] relative border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+    <section id="nursery" className="py-28 bg-[#090b09] relative border-t border-white/5">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         {/* Section Header */}
         <div className="flex items-center gap-3 mb-4">
           <div className="w-8 h-[1px] bg-[#d4af37]" />
@@ -24,7 +26,7 @@ export default function Nursery({ lang }: NurseryProps) {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          {/* Left Column: Image with Stats Overlay */}
+          {/* Left Column: Image with Caption */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -32,35 +34,21 @@ export default function Nursery({ lang }: NurseryProps) {
             transition={{ duration: 0.8 }}
             className="lg:col-span-6 relative"
           >
-            <div className="relative aspect-[4/3] rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
+            <div className="relative aspect-[4/3] rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-black">
               <Image
-                src="/images/nursery.png"
-                alt="GERGA High-Tech Sapling Nursery"
+                src={media.src}
+                alt={media.alt[lang === "en" ? "en" : "tr"]}
                 fill
                 className="object-cover img-editorial filter brightness-95 contrast-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80" />
-            </div>
-
-            {/* Nursery Floating Metrics Card */}
-            <div className="mt-6 grid grid-cols-2 gap-4">
-              {dict.nursery.stats.map((stat, i) => (
-                <div
-                  key={i}
-                  className="p-6 rounded-2xl bg-white/[0.03] border border-[#d4af37]/30 backdrop-blur-md flex flex-col justify-center"
-                >
-                  <span className="font-serif text-3xl lg:text-4xl text-[#d4af37] font-semibold">
-                    {stat.value}
-                  </span>
-                  <span className="text-[11px] font-mono tracking-wider uppercase text-gray-400 mt-1">
-                    {stat.label}
-                  </span>
-                </div>
-              ))}
+              <div className="absolute bottom-4 left-4 right-4 p-3 rounded-xl bg-black/60 backdrop-blur-md border border-white/10 text-[11px] font-mono text-gray-300">
+                {media.caption?.[lang === "en" ? "en" : "tr"]}
+              </div>
             </div>
           </motion.div>
 
-          {/* Right Column: Information & Key Genetics */}
+          {/* Right Column: Text & Features */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -74,18 +62,21 @@ export default function Nursery({ lang }: NurseryProps) {
             <h3 className="text-base sm:text-xl text-[#d4af37] font-light mb-6">
               {dict.nursery.subtitle}
             </h3>
-            <p className="text-gray-300 font-light text-sm sm:text-base leading-relaxed mb-8">
+            <p className="text-gray-300 font-light text-sm sm:text-base leading-relaxed mb-6">
               {dict.nursery.desc}
             </p>
 
-            {/* Genetics Feature List */}
-            <div className="space-y-6">
+            <div className="flex items-center gap-2 text-xs font-mono text-gray-400 bg-white/[0.03] p-3 rounded-xl border border-white/5 mb-8">
+              <Info className="w-4 h-4 text-[#d4af37] shrink-0" />
+              <span>{dict.nursery.disclaimer}</span>
+            </div>
+
+            {/* Features List */}
+            <div className="space-y-4">
               {dict.nursery.features.map((feat, idx) => (
                 <div key={idx} className="flex items-start gap-4 p-4 rounded-xl bg-white/[0.02] border border-white/5 hover:border-[#d4af37]/30 transition-all">
                   <div className="p-2.5 rounded-lg bg-[#d4af37]/10 text-[#d4af37] shrink-0 mt-0.5">
-                    {idx === 0 && <Dna className="w-5 h-5" />}
-                    {idx === 1 && <TrendingUp className="w-5 h-5" />}
-                    {idx === 2 && <ShieldCheck className="w-5 h-5" />}
+                    <Sprout className="w-5 h-5" />
                   </div>
                   <div>
                     <h4 className="font-serif text-lg text-white font-medium">
