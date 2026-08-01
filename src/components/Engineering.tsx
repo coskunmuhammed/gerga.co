@@ -85,7 +85,7 @@ export default function Engineering({ lang }: EngineeringProps) {
             >
               <div>
                 <div className="text-xs font-mono text-[#d4af37] mb-3">
-                  0{idx + 1} // ADIM
+                  {`0${idx + 1} // ADIM`}
                 </div>
                 <h4 className="font-serif text-lg text-white font-medium mb-3">
                   {service.name}

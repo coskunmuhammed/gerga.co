@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Sprout, ShieldCheck, Info } from "lucide-react";
+import { Sprout, Info } from "lucide-react";
 import { getDictionary } from "@/dictionaries";
 import { MEDIA_CONFIG } from "@/config/media";
 
@@ -15,7 +15,7 @@ export default function Nursery({ lang }: NurseryProps) {
   const media = MEDIA_CONFIG.nursery;
 
   return (
-    <section id="nursery" className="py-28 bg-[#090b09] relative border-t border-white/5">
+    <section id="nursery" className="py-24 bg-[#090b09] relative border-t border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         {/* Section Header */}
         <div className="flex items-center gap-3 mb-4">

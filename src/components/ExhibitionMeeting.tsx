@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Send, CheckCircle2, AlertCircle, Calendar, Building2, Globe2, Mail, Phone, MessageSquare, Info } from "lucide-react";
+import { Send, CheckCircle2, AlertCircle, Calendar, ShieldCheck } from "lucide-react";
 import { getDictionary } from "@/dictionaries";
 
 interface ExhibitionMeetingProps {
@@ -22,6 +22,7 @@ export default function ExhibitionMeeting({ lang }: ExhibitionMeetingProps) {
     areaOfInterest: "",
     message: "",
     preferredLanguage: lang === "en" ? "English" : "Türkçe",
+    kvkkConsent: false,
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -29,7 +30,9 @@ export default function ExhibitionMeeting({ lang }: ExhibitionMeetingProps) {
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const target = e.target;
+    const value = target.type === "checkbox" ? (target as HTMLInputElement).checked : target.value;
+    setFormData({ ...formData, [target.name]: value });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -58,12 +61,13 @@ export default function ExhibitionMeeting({ lang }: ExhibitionMeetingProps) {
           areaOfInterest: "",
           message: "",
           preferredLanguage: lang === "en" ? "English" : "Türkçe",
+          kvkkConsent: false,
         });
       } else {
         setSubmitStatus("error");
         setErrorMessage(data.message || formDict.errorMsg);
       }
-    } catch (err) {
+    } catch {
       setSubmitStatus("error");
       setErrorMessage(formDict.errorMsg);
     } finally {
@@ -72,7 +76,7 @@ export default function ExhibitionMeeting({ lang }: ExhibitionMeetingProps) {
   };
 
   return (
-    <section id="b2b-meeting" className="py-28 bg-[#090b09] relative border-t border-white/5">
+    <section id="b2b-meeting" className="py-24 bg-[#090b09] relative border-t border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         {/* Section Header */}
         <div className="flex items-center gap-3 mb-4">
@@ -82,7 +86,7 @@ export default function ExhibitionMeeting({ lang }: ExhibitionMeetingProps) {
           </span>
         </div>
 
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-8">
           <div>
             <h2 className="font-serif text-3xl sm:text-5xl lg:text-6xl text-white font-light">
               {dict.b2bMeeting.title}
@@ -94,7 +98,7 @@ export default function ExhibitionMeeting({ lang }: ExhibitionMeetingProps) {
         </div>
 
         {/* Meeting Form Container */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           {/* Left Column: Form Info & Notice */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -107,7 +111,7 @@ export default function ExhibitionMeeting({ lang }: ExhibitionMeetingProps) {
               <div className="flex items-center gap-3 mb-6">
                 <Calendar className="w-6 h-6 text-[#d4af37]" />
                 <h3 className="font-serif text-2xl text-white font-medium">
-                  B2B Görüşme Talebi
+                  {lang === "en" ? "B2B Meeting Request" : "B2B Görüşme Talebi"}
                 </h3>
               </div>
 
@@ -117,32 +121,28 @@ export default function ExhibitionMeeting({ lang }: ExhibitionMeetingProps) {
 
               <div className="space-y-4 border-t border-white/10 pt-6">
                 <div className="text-xs font-mono text-gray-400 uppercase tracking-wider">
-                  Görüşme Konuları
+                  {lang === "en" ? "Discussion Topics" : "Görüşme Konuları"}
                 </div>
                 <ul className="space-y-2 text-xs text-gray-300">
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#d4af37]" />
-                    <span>Ürün Tedariği ve Toptan İhracat</span>
+                    <span>{lang === "en" ? "Aegean Dried Fig Supply & Export" : "Ege Kuru İncir Tedariği ve İhracat"}</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#d4af37]" />
-                    <span>Ticari İncir Fidanı Temini</span>
+                    <span>{lang === "en" ? "Commercial Fig Sapling Supply" : "Ticari İncir Fidanı Temini"}</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#d4af37]" />
-                    <span>Anahtar Teslim Bahçe Kurulumu</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#d4af37]" />
-                    <span>Distribütörlük ve Bölge Temsilciliği</span>
+                    <span>{lang === "en" ? "Turnkey Orchard Establishment Services" : "Anahtar Teslim Bahçe Kurulumu"}</span>
                   </li>
                 </ul>
               </div>
             </div>
 
             <div className="mt-8 pt-6 border-t border-white/10 flex items-center gap-2 text-[11px] font-mono text-gray-400">
-              <Info className="w-4 h-4 text-[#d4af37] shrink-0" />
-              <span>{formDict.devNotice}</span>
+              <ShieldCheck className="w-4 h-4 text-[#d4af37] shrink-0" />
+              <span>{lang === "en" ? "Form responses are saved securely to file persistence." : "Talepler güvenli sunucu veri sistemine kaydedilir."}</span>
             </div>
           </motion.div>
 
@@ -152,7 +152,7 @@ export default function ExhibitionMeeting({ lang }: ExhibitionMeetingProps) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.15 }}
-            className="lg:col-span-7 glass-card p-6 sm:p-10 rounded-3xl border border-white/10"
+            className="lg:col-span-7 glass-card p-6 sm:p-8 rounded-3xl border border-white/10"
           >
             {submitStatus === "success" ? (
               <div className="flex flex-col items-center justify-center py-12 text-center">
@@ -160,7 +160,7 @@ export default function ExhibitionMeeting({ lang }: ExhibitionMeetingProps) {
                   <CheckCircle2 className="w-8 h-8" />
                 </div>
                 <h3 className="font-serif text-2xl text-white font-medium mb-3">
-                  Talebiniz Alındı
+                  {lang === "en" ? "Meeting Request Received" : "Talebiniz Alındı"}
                 </h3>
                 <p className="text-xs sm:text-sm text-gray-300 font-light max-w-md mb-8">
                   {formDict.successMsg}
@@ -169,11 +169,11 @@ export default function ExhibitionMeeting({ lang }: ExhibitionMeetingProps) {
                   onClick={() => setSubmitStatus("idle")}
                   className="px-6 py-3 rounded-full bg-white/10 text-white text-xs font-semibold uppercase tracking-wider hover:bg-white/20 transition-all min-h-[44px]"
                 >
-                  Yeni Görüşme Talebi
+                  {lang === "en" ? "Submit Another Request" : "Yeni Görüşme Talebi"}
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-5">
+              <form onSubmit={handleSubmit} className="space-y-4">
                 {submitStatus === "error" && (
                   <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-xs flex items-center gap-3">
                     <AlertCircle className="w-5 h-5 shrink-0" />
@@ -181,11 +181,10 @@ export default function ExhibitionMeeting({ lang }: ExhibitionMeetingProps) {
                   </div>
                 )}
 
-                {/* Form Fields: Single Column on Mobile */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  {/* Full Name */}
+                {/* Form Fields */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-xs font-mono text-gray-300 uppercase tracking-wider">
+                    <label className="text-[11px] font-mono text-gray-300 uppercase tracking-wider">
                       {formDict.fullName} *
                     </label>
                     <input
@@ -199,9 +198,8 @@ export default function ExhibitionMeeting({ lang }: ExhibitionMeetingProps) {
                     />
                   </div>
 
-                  {/* Company */}
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-xs font-mono text-gray-300 uppercase tracking-wider">
+                    <label className="text-[11px] font-mono text-gray-300 uppercase tracking-wider">
                       {formDict.company}
                     </label>
                     <input
@@ -215,10 +213,9 @@ export default function ExhibitionMeeting({ lang }: ExhibitionMeetingProps) {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  {/* Country */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-xs font-mono text-gray-300 uppercase tracking-wider">
+                    <label className="text-[11px] font-mono text-gray-300 uppercase tracking-wider">
                       {formDict.country} *
                     </label>
                     <input
@@ -232,9 +229,8 @@ export default function ExhibitionMeeting({ lang }: ExhibitionMeetingProps) {
                     />
                   </div>
 
-                  {/* Area of Interest */}
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-xs font-mono text-gray-300 uppercase tracking-wider">
+                    <label className="text-[11px] font-mono text-gray-300 uppercase tracking-wider">
                       {formDict.areaOfInterest} *
                     </label>
                     <select
@@ -256,10 +252,9 @@ export default function ExhibitionMeeting({ lang }: ExhibitionMeetingProps) {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  {/* Email */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-xs font-mono text-gray-300 uppercase tracking-wider">
+                    <label className="text-[11px] font-mono text-gray-300 uppercase tracking-wider">
                       {formDict.email} *
                     </label>
                     <input
@@ -273,9 +268,8 @@ export default function ExhibitionMeeting({ lang }: ExhibitionMeetingProps) {
                     />
                   </div>
 
-                  {/* Phone */}
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-xs font-mono text-gray-300 uppercase tracking-wider">
+                    <label className="text-[11px] font-mono text-gray-300 uppercase tracking-wider">
                       {formDict.phone}
                     </label>
                     <input
@@ -289,26 +283,43 @@ export default function ExhibitionMeeting({ lang }: ExhibitionMeetingProps) {
                   </div>
                 </div>
 
-                {/* Preferred Language & Message */}
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-xs font-mono text-gray-300 uppercase tracking-wider">
+                  <label className="text-[11px] font-mono text-gray-300 uppercase tracking-wider">
                     {formDict.message} *
                   </label>
                   <textarea
                     name="message"
-                    rows={4}
+                    rows={3}
                     required
                     value={formData.message}
                     onChange={handleChange}
                     className="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/10 text-white text-sm focus:border-[#d4af37] focus:outline-none transition-colors"
-                    placeholder="Görüşmek istediğiniz detayları belirtiniz..."
+                    placeholder={lang === "en" ? "Please enter your meeting details..." : "Görüşmek istediğiniz detayları belirtiniz..."}
                   />
+                </div>
+
+                {/* KVKK / Privacy Notice Checkbox */}
+                <div className="flex items-start gap-2.5 pt-2">
+                  <input
+                    type="checkbox"
+                    id="kvkkConsent"
+                    name="kvkkConsent"
+                    required
+                    checked={formData.kvkkConsent}
+                    onChange={handleChange}
+                    className="mt-0.5 w-4 h-4 rounded border-white/20 bg-black text-[#d4af37] focus:ring-[#d4af37]"
+                  />
+                  <label htmlFor="kvkkConsent" className="text-xs text-gray-400 font-light leading-snug cursor-pointer">
+                    {lang === "en"
+                      ? "I agree to the processing of my contact information for B2B meeting communication."
+                      : "İletişim bilgilerimin B2B fuar görüşmesi kapsamında işlenmesini onaylıyorum."}
+                  </label>
                 </div>
 
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-4 min-h-[48px] rounded-xl bg-[#d4af37] text-black font-semibold text-xs uppercase tracking-[0.2em] hover:bg-[#e5c158] transition-all flex items-center justify-center gap-2 shadow-lg disabled:opacity-50"
+                  className="w-full py-4 min-h-[48px] rounded-xl bg-[#d4af37] text-black font-semibold text-xs uppercase tracking-[0.2em] hover:bg-[#e5c158] transition-all flex items-center justify-center gap-2 shadow-lg disabled:opacity-50 mt-2"
                 >
                   <Send className="w-4 h-4" />
                   <span>{isSubmitting ? formDict.submitting : formDict.submit}</span>

@@ -24,9 +24,9 @@ export function middleware(request: NextRequest) {
 
   // 1. Check NEXT_LOCALE cookie
   const cookieLocale = request.cookies.get('NEXT_LOCALE')?.value;
-  let preferredLocale = defaultLocale;
+  let preferredLocale: string = defaultLocale;
 
-  if (cookieLocale && locales.includes(cookieLocale as any)) {
+  if (cookieLocale && (locales as readonly string[]).includes(cookieLocale)) {
     preferredLocale = cookieLocale;
   } else {
     // 2. Check Accept-Language header

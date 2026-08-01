@@ -2,16 +2,12 @@
 
 import { motion } from "framer-motion";
 import {
-  QrCode,
   Download,
   MessageCircle,
   Mail,
   Phone,
   MapPin,
-  Award,
   FileText,
-  Clock,
-  ExternalLink,
 } from "lucide-react";
 import { getDictionary } from "@/dictionaries";
 
@@ -47,7 +43,7 @@ END:VCARD`;
   };
 
   return (
-    <section id="contact" className="py-28 bg-[#090b09] relative border-t border-white/5">
+    <section id="contact" className="py-24 bg-[#090b09] relative border-t border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         {/* Section Header */}
         <div className="flex items-center gap-3 mb-4">
@@ -69,14 +65,14 @@ END:VCARD`;
         </div>
 
         {/* Digital Business Card & Contact Info */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          {/* Left Column: Digital Business Card with Verified QR codes */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+          {/* Left Column: Digital Business Card */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="lg:col-span-6 glass-card p-6 sm:p-10 rounded-3xl border border-[#d4af37]/40 relative overflow-hidden shadow-2xl"
+            className="lg:col-span-6 glass-card p-6 sm:p-8 rounded-3xl border border-[#d4af37]/40 relative overflow-hidden shadow-2xl"
           >
             <div className="absolute top-0 right-0 w-40 h-40 bg-[#d4af37]/10 rounded-full blur-3xl" />
 
@@ -156,9 +152,9 @@ END:VCARD`;
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.15 }}
-            className="lg:col-span-6 flex flex-col gap-5"
+            className="lg:col-span-6 flex flex-col gap-4"
           >
-            {/* PDF Catalog Area (Coming Soon - No Fake PDF) */}
+            {/* PDF Catalog Area (Coming Soon) */}
             <div className="glass-card p-6 rounded-2xl border border-white/10 flex items-start gap-4">
               <div className="p-3 rounded-xl bg-[#d4af37]/10 text-[#d4af37] shrink-0">
                 <FileText className="w-5 h-5" />

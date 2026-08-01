@@ -1,21 +1,22 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { X, CheckCircle2, ShieldAlert, Award, Send } from "lucide-react";
+import { X, CheckCircle2, Award, Send } from "lucide-react";
 import Image from "next/image";
 import { getDictionary } from "@/dictionaries";
 
-interface Product {
+export interface ProductItem {
   id: string;
   name: string;
   category: string;
   desc: string;
   specs: string[];
   image: string;
+  statusBadge?: string;
 }
 
 interface ProductModalProps {
-  product: Product | null;
+  product: ProductItem | null;
   onClose: () => void;
   lang: string;
 }
@@ -48,7 +49,7 @@ export default function ProductModal({ product, onClose, lang }: ProductModalPro
           {/* Close Button */}
           <button
             onClick={onClose}
-            className="absolute top-6 right-6 p-2.5 rounded-full bg-white/10 text-gray-300 hover:text-white hover:bg-white/20 transition-all"
+            className="absolute top-6 right-6 p-2.5 rounded-full bg-white/10 text-gray-300 hover:text-white hover:bg-white/20 transition-all min-h-[44px] min-w-[44px] flex items-center justify-center"
           >
             <X className="w-5 h-5" />
           </button>
@@ -70,10 +71,18 @@ export default function ProductModal({ product, onClose, lang }: ProductModalPro
             {/* Right Details View */}
             <div className="md:col-span-7 flex flex-col justify-between h-full">
               <div>
-                <span className="text-xs font-mono tracking-widest text-[#d4af37] uppercase">
-                  {dict.productModal.origin}
-                </span>
-                <h3 className="font-serif text-2xl sm:text-3xl text-white font-medium mt-1 mb-4">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-xs font-mono tracking-widest text-[#d4af37] uppercase">
+                    {dict.productModal.origin}
+                  </span>
+                  {product.statusBadge && (
+                    <span className="px-2.5 py-0.5 rounded-full bg-[#d4af37]/20 border border-[#d4af37]/40 text-[10px] font-mono text-[#d4af37]">
+                      {product.statusBadge}
+                    </span>
+                  )}
+                </div>
+
+                <h3 className="font-serif text-2xl sm:text-3xl text-white font-medium mb-4">
                   {product.name}
                 </h3>
                 <p className="text-sm text-gray-300 font-light leading-relaxed mb-6">
@@ -103,9 +112,9 @@ export default function ProductModal({ product, onClose, lang }: ProductModalPro
               {/* Action for Trade Delegates */}
               <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center gap-4">
                 <a
-                  href={`#contact`}
+                  href={`#b2b-meeting`}
                   onClick={onClose}
-                  className="w-full text-center py-3.5 rounded-full bg-[#d4af37] text-black font-semibold text-xs uppercase tracking-[0.18em] hover:bg-[#e5c158] transition-all flex items-center justify-center gap-2"
+                  className="w-full text-center py-3.5 rounded-full bg-[#d4af37] text-black font-semibold text-xs uppercase tracking-[0.18em] hover:bg-[#e5c158] transition-all flex items-center justify-center gap-2 min-h-[44px]"
                 >
                   <Send className="w-4 h-4" />
                   <span>{dict.productModal.requestSample}</span>

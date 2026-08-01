@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { BookOpen, Leaf, Droplets, GraduationCap, ArrowRight } from "lucide-react";
+import { BookOpen, Leaf, Droplets, GraduationCap } from "lucide-react";
 import { getDictionary } from "@/dictionaries";
 
 interface AcademyProps {
@@ -14,10 +14,10 @@ export default function Academy({ lang }: AcademyProps) {
   const icons = [Leaf, Droplets, GraduationCap];
 
   return (
-    <section id="academy" className="py-32 bg-[#090b09] relative border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+    <section id="academy" className="py-24 bg-[#090b09] relative border-t border-white/5">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
           <div>
             <div className="flex items-center gap-3 mb-4">
               <div className="w-8 h-[1px] bg-[#d4af37]" />

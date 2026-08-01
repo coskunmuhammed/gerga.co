@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { ArrowUpRight, Info } from "lucide-react";
 import { getDictionary } from "@/dictionaries";
-import ProductModal from "./ProductModal";
+import ProductModal, { ProductItem } from "./ProductModal";
 
 interface ProductsProps {
   lang: string;
@@ -13,10 +13,10 @@ interface ProductsProps {
 
 export default function Products({ lang }: ProductsProps) {
   const dict = getDictionary(lang);
-  const [selectedProduct, setSelectedProduct] = useState<any | null>(null);
+  const [selectedProduct, setSelectedProduct] = useState<ProductItem | null>(null);
 
   return (
-    <section id="products" className="py-28 bg-[#090b09] relative border-t border-white/5">
+    <section id="products" className="py-24 bg-[#090b09] relative border-t border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         {/* Section Title */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
@@ -51,7 +51,7 @@ export default function Products({ lang }: ProductsProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: index * 0.15 }}
-              onClick={() => setSelectedProduct(item)}
+              onClick={() => setSelectedProduct(item as ProductItem)}
               className="glass-card rounded-3xl overflow-hidden cursor-pointer group flex flex-col justify-between border border-white/10"
             >
               {/* Product Image Box */}
@@ -64,8 +64,15 @@ export default function Products({ lang }: ProductsProps) {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#111511] via-transparent to-transparent opacity-90" />
                 
-                <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-black/70 backdrop-blur-md border border-[#d4af37]/30 text-[10px] font-mono text-[#d4af37] uppercase">
-                  {item.category}
+                <div className="absolute top-4 left-4 flex items-center gap-2">
+                  <span className="px-3 py-1 rounded-full bg-black/70 backdrop-blur-md border border-[#d4af37]/30 text-[10px] font-mono text-[#d4af37] uppercase">
+                    {item.category}
+                  </span>
+                  {item.statusBadge && (
+                    <span className="px-2.5 py-1 rounded-full bg-[#d4af37]/20 backdrop-blur-md border border-[#d4af37]/50 text-[10px] font-mono text-[#d4af37] font-semibold">
+                      {item.statusBadge}
+                    </span>
+                  )}
                 </div>
               </div>
 

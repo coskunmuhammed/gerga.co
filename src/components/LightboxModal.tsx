@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ChevronLeft, ChevronRight, Maximize2 } from "lucide-react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 
 interface ImageItem {
@@ -45,7 +45,7 @@ export default function LightboxModal({
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-6 right-6 z-20 p-3 rounded-full bg-white/10 text-white hover:bg-[#d4af37] hover:text-black transition-all"
+          className="absolute top-6 right-6 z-20 p-3 rounded-full bg-white/10 text-white hover:bg-[#d4af37] hover:text-black transition-all min-h-[44px] min-w-[44px] flex items-center justify-center"
         >
           <X className="w-6 h-6" />
         </button>
@@ -53,7 +53,7 @@ export default function LightboxModal({
         {/* Previous Button */}
         <button
           onClick={handlePrev}
-          className="absolute left-6 top-1/2 -translate-y-1/2 z-20 p-3.5 rounded-full bg-black/60 border border-white/20 text-white hover:bg-[#d4af37] hover:text-black transition-all"
+          className="absolute left-6 top-1/2 -translate-y-1/2 z-20 p-3.5 rounded-full bg-black/60 border border-white/20 text-white hover:bg-[#d4af37] hover:text-black transition-all min-h-[44px] min-w-[44px] flex items-center justify-center"
         >
           <ChevronLeft className="w-6 h-6" />
         </button>
@@ -61,7 +61,7 @@ export default function LightboxModal({
         {/* Next Button */}
         <button
           onClick={handleNext}
-          className="absolute right-6 top-1/2 -translate-y-1/2 z-20 p-3.5 rounded-full bg-black/60 border border-white/20 text-white hover:bg-[#d4af37] hover:text-black transition-all"
+          className="absolute right-6 top-1/2 -translate-y-1/2 z-20 p-3.5 rounded-full bg-black/60 border border-white/20 text-white hover:bg-[#d4af37] hover:text-black transition-all min-h-[44px] min-w-[44px] flex items-center justify-center"
         >
           <ChevronRight className="w-6 h-6" />
         </button>
