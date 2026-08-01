@@ -1,135 +1,185 @@
 import { NextRequest, NextResponse } from "next/server";
-import fs from "fs";
-import path from "path";
+import { createB2BMeetingSchema } from "@/validation/b2b-meeting-schema";
+import { DatabaseB2BMeetingRepository } from "@/repositories/database/database-b2b-meeting-repository";
+import { EmailNotificationServiceAdapter } from "@/services/b2b-notification-service";
+import { B2BMeetingService } from "@/services/b2b-meeting-service";
+import { MemoryRateLimiter } from "@/services/rate-limit-service";
+import { mapPrismaError } from "@/lib/database/prisma-error-mapper";
 
-export interface B2BMeetingPayload {
-  fullName: string;
-  company?: string;
-  country: string;
-  email: string;
-  phone?: string;
-  areaOfInterest: string;
-  message: string;
-  preferredLanguage: string;
-  kvkkConsent?: boolean;
-}
-
-export interface B2BRecord {
-  id: string;
-  receivedAt: string;
-  ip: string;
-  payload: {
-    fullName: string;
-    company: string;
-    country: string;
-    email: string;
-    phone: string;
-    areaOfInterest: string;
-    message: string;
-    preferredLanguage: string;
-  };
-}
-
-const DATA_DIR = path.join(process.cwd(), "data");
-const FILE_PATH = path.join(DATA_DIR, "b2b-submissions.json");
-
-function saveSubmissionToFile(submission: B2BRecord): void {
-  try {
-    if (!fs.existsSync(DATA_DIR)) {
-      fs.mkdirSync(DATA_DIR, { recursive: true });
-    }
-
-    let existingData: B2BRecord[] = [];
-    if (fs.existsSync(FILE_PATH)) {
-      const fileContent = fs.readFileSync(FILE_PATH, "utf-8");
-      existingData = JSON.parse(fileContent || "[]") as B2BRecord[];
-    }
-
-    existingData.push(submission);
-    fs.writeFileSync(FILE_PATH, JSON.stringify(existingData, null, 2), "utf-8");
-  } catch (error) {
-    console.error("[B2B Persistence Error]", error);
-  }
-}
+const repository = new DatabaseB2BMeetingRepository();
+const notificationService = new EmailNotificationServiceAdapter();
+const meetingService = new B2BMeetingService(repository, notificationService);
+const rateLimiter = new MemoryRateLimiter(5, 60);
 
 export async function POST(request: NextRequest) {
+  const startTime = Date.now();
+
   try {
-    const body: B2BMeetingPayload = await request.json();
-
-    if (!body.fullName || !body.fullName.trim()) {
+    // 1. Body size check (max 64KB)
+    const contentLength = request.headers.get("content-length");
+    if (contentLength && parseInt(contentLength, 10) > 65536) {
       return NextResponse.json(
-        { success: false, error: "FULL_NAME_REQUIRED", message: "Ad Soyad alanı zorunludur. / Full Name is required." },
+        {
+          success: false,
+          error: {
+            code: "PAYLOAD_TOO_LARGE",
+            message: "İstek boyutu çok yüksek. / Payload too large.",
+          },
+        },
+        { status: 413 }
+      );
+    }
+
+    // 2. Rate Limiting
+    const clientIp = request.headers.get("x-forwarded-for")?.split(",")[0] || "anon";
+    const rateCheck = await rateLimiter.consume(clientIp);
+    if (!rateCheck.allowed) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: {
+            code: "RATE_LIMITED",
+            message: "Çok fazla istek gönderildi. Lütfen bekleyin. / Too many requests.",
+            retryAfterSeconds: rateCheck.retryAfterSeconds,
+          },
+        },
+        { status: 429 }
+      );
+    }
+
+    // 3. Request parse
+    const rawBody = await request.json();
+
+    // 4. DTO Validation via Zod
+    const parseResult = createB2BMeetingSchema.safeParse(rawBody);
+    if (!parseResult.success) {
+      const fieldErrors: Record<string, string> = {};
+      parseResult.error.issues.forEach((issue) => {
+        const path = issue.path.join(".");
+        if (path) fieldErrors[path] = issue.message;
+      });
+
+      return NextResponse.json(
+        {
+          success: false,
+          error: {
+            code: "VALIDATION_ERROR",
+            message: "Lütfen form alanlarını kontrol edin. / Please check the form fields.",
+            fieldErrors,
+          },
+        },
+        { status: 422 }
+      );
+    }
+
+    const validatedData = parseResult.data;
+
+    // 5. Honeypot check
+    if (validatedData.honeypot && validatedData.honeypot.trim().length > 0) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: {
+            code: "SPAM_DETECTED",
+            message: "İstek kabul edilmedi. / Request rejected.",
+          },
+        },
         { status: 400 }
       );
     }
 
-    if (!body.email || !body.email.includes("@")) {
+    // 6. Minimum filling time check (min 1500ms)
+    if (validatedData.formStartTime && Date.now() - validatedData.formStartTime < 1500) {
       return NextResponse.json(
-        { success: false, error: "INVALID_EMAIL", message: "Geçerli bir e-posta adresi giriniz. / Valid Email address required." },
+        {
+          success: false,
+          error: {
+            code: "SPAM_FAST_FILL",
+            message: "Lütfen formu doğrulayarak doldurunuz.",
+          },
+        },
         { status: 400 }
       );
     }
 
-    if (!body.country || !body.country.trim()) {
-      return NextResponse.json(
-        { success: false, error: "COUNTRY_REQUIRED", message: "Ülke alanı zorunludur. / Country is required." },
-        { status: 400 }
-      );
-    }
+    // 7. Business Service Processing
+    const { referenceNumber } = await meetingService.processMeetingRequest({
+      fullName: validatedData.fullName,
+      companyName: validatedData.companyName,
+      country: validatedData.country,
+      email: validatedData.email,
+      phone: validatedData.phone,
+      areaOfInterest: validatedData.areaOfInterest,
+      message: validatedData.message,
+      preferredLanguage: validatedData.preferredLanguage,
+      privacyConsent: validatedData.privacyConsent,
+      marketingConsent: validatedData.marketingConsent,
+    });
 
-    if (!body.areaOfInterest || !body.areaOfInterest.trim()) {
-      return NextResponse.json(
-        { success: false, error: "AREA_OF_INTEREST_REQUIRED", message: "İlgi alanı seçilmelidir. / Area of Interest required." },
-        { status: 400 }
-      );
-    }
+    // 8. Safe Log without PII
+    const duration = Date.now() - startTime;
+    console.log("[B2B Meeting Log]", {
+      event: "B2B_SUBMISSION_SUCCESS",
+      route: "/api/b2b-meeting",
+      status: 201,
+      duration,
+      referenceNumber,
+    });
 
-    if (!body.message || !body.message.trim()) {
-      return NextResponse.json(
-        { success: false, error: "MESSAGE_REQUIRED", message: "Mesaj alanı zorunludur. / Message content required." },
-        { status: 400 }
-      );
-    }
-
-    if (body.kvkkConsent !== true) {
-      return NextResponse.json(
-        { success: false, error: "KVKK_REQUIRED", message: "Gizlilik ve KVKK aydınlatmasını onaylamalısınız. / Privacy notice consent is required." },
-        { status: 400 }
-      );
-    }
-
-    const newRecord: B2BRecord = {
-      id: `GERGA-B2B-${Date.now()}`,
-      receivedAt: new Date().toISOString(),
-      ip: request.headers.get("x-forwarded-for") || "local",
-      payload: {
-        fullName: body.fullName.trim(),
-        company: body.company?.trim() || "-",
-        country: body.country.trim(),
-        email: body.email.trim(),
-        phone: body.phone?.trim() || "-",
-        areaOfInterest: body.areaOfInterest,
-        message: body.message.trim(),
-        preferredLanguage: body.preferredLanguage || "TR",
-      },
-    };
-
-    saveSubmissionToFile(newRecord);
-
+    // 9. Safe Response (HTTP 201 Created)
     return NextResponse.json(
       {
         success: true,
-        message: "Görüşme talebiniz başarıyla kaydedilmiştir. / Meeting request recorded successfully.",
-        referenceId: newRecord.id,
-        receivedAt: newRecord.receivedAt,
+        data: {
+          referenceNumber,
+          createdAt: new Date().toISOString(),
+        },
       },
-      { status: 200 }
+      { status: 201 }
     );
-  } catch (error) {
-    console.error("[B2B Meeting API Error]", error);
+  } catch (error: unknown) {
+    const duration = Date.now() - startTime;
+    const errObj = error as Error & { code?: string };
+
+    if (errObj?.code === "DUPLICATE_SUBMISSION") {
+      console.log("[B2B Meeting Log]", {
+        event: "B2B_SUBMISSION_DUPLICATE",
+        route: "/api/b2b-meeting",
+        status: 409,
+        duration,
+        errorCode: "DUPLICATE_SUBMISSION",
+      });
+
+      return NextResponse.json(
+        {
+          success: false,
+          error: {
+            code: "DUPLICATE_SUBMISSION",
+            message: "Bu görüşme talebi halihazırda alınmıştır. / This meeting request has already been received.",
+          },
+        },
+        { status: 409 }
+      );
+    }
+
+    const safeErr = mapPrismaError(error);
+    console.error("[B2B Meeting Log Error]", {
+      event: "B2B_SUBMISSION_ERROR",
+      route: "/api/b2b-meeting",
+      status: safeErr.status,
+      duration,
+      errorCode: safeErr.code,
+    });
+
     return NextResponse.json(
-      { success: false, error: "SERVER_ERROR", message: "Sunucu hatası oluştu. / Internal server error." },
-      { status: 500 }
+      {
+        success: false,
+        error: {
+          code: safeErr.code,
+          message: safeErr.message,
+        },
+      },
+      { status: safeErr.status }
     );
   }
 }

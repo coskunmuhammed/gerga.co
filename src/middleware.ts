@@ -12,10 +12,11 @@ export function middleware(request: NextRequest) {
 
   if (pathnameHasLocale) return NextResponse.next();
 
-  // Exclude static assets, api routes, images, favicon, etc.
+  // Exclude static assets, api routes, admin routes, images, favicon, etc.
   if (
     pathname.startsWith('/_next') ||
     pathname.startsWith('/api') ||
+    pathname.startsWith('/admin') ||
     pathname.startsWith('/images') ||
     pathname.includes('.')
   ) {
@@ -44,6 +45,6 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    '/((?!api|_next/static|_next/image|favicon.ico|images).*)',
+    '/((?!api|admin|_next/static|_next/image|favicon.ico|images).*)',
   ],
 };

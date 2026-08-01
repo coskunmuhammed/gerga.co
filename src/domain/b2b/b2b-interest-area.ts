@@ -1,0 +1,18 @@
+export type B2BInterestArea =
+  | "PRODUCT_SUPPLY"
+  | "WHOLESALE"
+  | "SAPLINGS"
+  | "ORCHARD_ESTABLISHMENT"
+  | "CONSULTANCY"
+  | "DISTRIBUTION"
+  | "OTHER";
+
+export const B2B_INTEREST_AREAS: B2BInterestArea[] = [
+  "PRODUCT_SUPPLY",
+  "WHOLESALE",
+  "SAPLINGS",
+  "ORCHARD_ESTABLISHMENT",
+  "CONSULTANCY",
+  "DISTRIBUTION",
+  "OTHER",
+];

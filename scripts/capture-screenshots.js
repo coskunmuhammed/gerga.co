@@ -72,7 +72,23 @@ async function capture() {
     }
   }
 
-  console.log("All QA screenshots captured successfully!");
+  // 5. Admin Panel Screenshots
+  console.log("Capturing Admin Panel...");
+  await page.goto("http://localhost:3005/admin/giris", { waitUntil: "domcontentloaded" });
+  await page.waitForSelector('input[type="password"]', { timeout: 5000 });
+  await page.type('input[type="password"]', "GergaExhibition2026Admin!");
+  await page.click('button[type="submit"]');
+  await new Promise(r => setTimeout(r, 1500));
+  await page.screenshot({ path: path.join(SCREENSHOT_DIR, "admin_b2b_list.png") });
+
+  const detailLink = await page.$('a[href*="/admin/b2b-talepleri/"]');
+  if (detailLink) {
+    await detailLink.click();
+    await new Promise(r => setTimeout(r, 1000));
+    await page.screenshot({ path: path.join(SCREENSHOT_DIR, "admin_b2b_detail.png") });
+  }
+
+  console.log("All QA & Admin screenshots captured successfully!");
   await browser.close();
 }
 

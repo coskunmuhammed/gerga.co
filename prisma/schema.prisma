@@ -1,0 +1,57 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model B2BMeetingRequest {
+  id                  String           @id @default(cuid())
+  referenceNumber     String           @unique
+  fullName            String
+  companyName         String?
+  country             String?
+  email               String
+  phone               String?
+  interestArea        B2BInterestArea
+  message             String?
+  preferredLanguage   SupportedLocale
+  status              B2BRequestStatus @default(NEW)
+  privacyAccepted     Boolean
+  privacyVersion      String
+  privacyAcceptedAt   DateTime
+  marketingAccepted   Boolean          @default(false)
+  marketingVersion    String?
+  marketingAcceptedAt DateTime?
+  source              String?
+  internalNote        String?
+  createdAt           DateTime         @default(now())
+  updatedAt           DateTime         @updatedAt
+  archivedAt          DateTime?
+}
+
+enum B2BRequestStatus {
+  NEW
+  REVIEWING
+  CONTACTED
+  QUALIFIED
+  CLOSED
+  SPAM
+}
+
+enum B2BInterestArea {
+  PRODUCT_SUPPLY
+  WHOLESALE
+  SAPLINGS
+  ORCHARD_ESTABLISHMENT
+  CONSULTANCY
+  DISTRIBUTION
+  OTHER
+}
+
+enum SupportedLocale {
+  TR
+  EN
+}
