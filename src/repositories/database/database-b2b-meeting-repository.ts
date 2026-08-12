@@ -27,7 +27,13 @@ export class DatabaseB2BMeetingRepository implements IB2BMeetingRepository {
         marketingAccepted: input.marketingAccepted ?? false,
         marketingVersion: input.marketingVersion || null,
         marketingAcceptedAt: input.marketingAcceptedAt || null,
-        source: input.source || "Exhibition Web Form",
+        source: input.source || null,
+        requestType: input.requestType || "B2B_MEETING",
+        priority: input.priority || "Standard",
+        score: input.score ?? 0,
+        scoreReasons: input.scoreReasons || null,
+        lastContactedAt: input.lastContactedAt || null,
+        nextFollowUpAt: input.nextFollowUpAt || null,
       },
     });
 

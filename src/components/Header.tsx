@@ -46,14 +46,17 @@ export default function Header({ lang }: HeaderProps) {
     router.push(newPath);
   };
 
+  const catalogueHref = lang === "en" ? "/en/catalogue" : "/tr/katalog";
+
   const navLinks = [
     { href: "#intro", label: dict.nav.intro },
     { href: "#aegean", label: dict.nav.aegean },
     { href: "#products", label: dict.nav.products },
     { href: "#nursery", label: dict.nav.nursery },
     { href: "#engineering", label: dict.nav.engineering },
-    { href: "#academy", label: dict.nav.academy },
     { href: "#b2b-meeting", label: dict.nav.b2bMeeting },
+    { href: "#post-exhibition", label: dict.nav.postExhibition },
+    { href: catalogueHref, label: dict.nav.catalogue, isExternal: true },
     { href: "#gallery", label: dict.nav.gallery },
     { href: "#contact", label: dict.nav.contact },
   ];

@@ -6,13 +6,18 @@ import Link from "next/link";
 import { Download, Search, LogOut, ExternalLink, RefreshCw } from "lucide-react";
 import { B2BMeetingRequestEntity } from "@/domain/b2b/b2b-meeting-request";
 
+interface FunnelStep {
+  name: string;
+  count: number;
+  display: string;
+}
+
 export default function AdminB2BListPage() {
   const [requests, setRequests] = useState<B2BMeetingRequestEntity[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("");
   const router = useRouter();
-
   const loadData = async (searchTerm: string, status: string) => {
     setLoading(true);
     try {
@@ -77,6 +82,38 @@ export default function AdminB2BListPage() {
     router.push("/admin/giris");
   };
 
+  const [funnelStats, setFunnelStats] = useState<FunnelStep[]>([]);
+
+  useEffect(() => {
+    let ignore = false;
+    async function loadFunnel() {
+      try {
+        const res = await fetch("/api/admin/funnel-stats");
+        const data = await res.json();
+        if (!ignore && data.success && data.funnel) {
+          setFunnelStats(data.funnel);
+        }
+      } catch {
+        // Ignore fetch errors
+      }
+    }
+    loadFunnel();
+    return () => {
+      ignore = true;
+    };
+  }, []);
+
+  const getPriorityBadge = (priority?: string) => {
+    switch (priority) {
+      case "High Priority":
+        return <span className="px-2.5 py-0.5 rounded-full bg-rose-500/20 border border-rose-500/40 text-rose-300 text-[10px] font-mono font-semibold">HIGH PRIORITY</span>;
+      case "Medium Priority":
+        return <span className="px-2.5 py-0.5 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-300 text-[10px] font-mono font-semibold">MEDIUM</span>;
+      default:
+        return <span className="px-2.5 py-0.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-300 text-[10px] font-mono">STANDARD</span>;
+    }
+  };
+
   const getStatusBadge = (status: string) => {
     switch (status) {
       case "NEW":
@@ -85,8 +122,12 @@ export default function AdminB2BListPage() {
         return <span className="px-2.5 py-1 rounded-full bg-yellow-500/20 border border-yellow-500/40 text-yellow-400 text-[10px] font-mono uppercase">İNCELENİYOR</span>;
       case "CONTACTED":
         return <span className="px-2.5 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 text-[10px] font-mono uppercase">İLETİŞİME GEÇİLDİ</span>;
+      case "FOLLOW_UP":
+        return <span className="px-2.5 py-1 rounded-full bg-cyan-500/20 border border-cyan-500/40 text-cyan-400 text-[10px] font-mono uppercase">TAKİPTE</span>;
       case "QUALIFIED":
         return <span className="px-2.5 py-1 rounded-full bg-purple-500/20 border border-purple-500/40 text-purple-400 text-[10px] font-mono uppercase">UYGUN BAŞVURU</span>;
+      case "NOT_INTERESTED":
+        return <span className="px-2.5 py-1 rounded-full bg-gray-600/30 border border-gray-500/40 text-gray-400 text-[10px] font-mono uppercase">İLGİLENMİYOR</span>;
       case "SPAM":
         return <span className="px-2.5 py-1 rounded-full bg-red-500/20 border border-red-500/40 text-red-400 text-[10px] font-mono uppercase">SPAM</span>;
       default:
@@ -95,7 +136,7 @@ export default function AdminB2BListPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#090b09] text-white p-4 sm:p-8">
+    <div className="min-h-screen bg-[#090b09] text-white p-4 sm:p-8 font-sans">
       <div className="max-w-7xl mx-auto space-y-8">
         {/* Admin Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/10">
@@ -104,12 +145,19 @@ export default function AdminB2BListPage() {
               <span className="text-[#d4af37] font-serif font-bold text-lg">G</span>
             </div>
             <div>
-              <h1 className="font-serif text-2xl font-semibold">GERGA B2B Fuar Talepleri</h1>
-              <p className="text-xs text-gray-400 font-mono">Görüşme Talepleri Yönetim Paneli</p>
+              <h1 className="font-serif text-2xl font-semibold">GERGA B2B Exhibition Intelligence</h1>
+              <p className="text-xs text-gray-400 font-mono">Görüşme Talepleri & Lead Intelligence Paneli</p>
             </div>
           </div>
 
           <div className="flex items-center gap-3">
+            <Link
+              href="/admin/fuar-yonetimi"
+              className="px-4 py-2.5 rounded-xl bg-white/10 border border-white/20 text-white font-semibold text-xs uppercase tracking-wider flex items-center gap-2 hover:bg-white/20 transition-all min-h-[44px]"
+            >
+              <span>Fuar & QR Yönetimi</span>
+            </Link>
+
             <a
               href="/api/admin/export-csv"
               download
@@ -127,6 +175,24 @@ export default function AdminB2BListPage() {
               <span>Çıkış</span>
             </button>
           </div>
+        </div>
+
+        {/* Conversion Funnel Overview Cards */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+          {funnelStats.length > 0 ? (
+            funnelStats.map((step, idx) => (
+              <div key={idx} className="glass-card p-4 rounded-2xl border border-white/10 bg-black/40">
+                <div className="text-[10px] font-mono text-gray-400 uppercase tracking-wider truncate">
+                  {step.name}
+                </div>
+                <div className="text-xl font-mono text-[#d4af37] font-semibold mt-1">
+                  {step.display}
+                </div>
+              </div>
+            ))
+          ) : (
+            <div className="col-span-full text-xs font-mono text-gray-400">Funnel istatistikleri yükleniyor...</div>
+          )}
         </div>
 
         {/* Filters & Search */}
@@ -184,8 +250,9 @@ export default function AdminB2BListPage() {
                   <th className="p-4">Tarih</th>
                   <th className="p-4">Ad Soyad</th>
                   <th className="p-4">Şirket / Ülke</th>
+                  <th className="p-4">Priority / Skor</th>
+                  <th className="p-4">Kaynak</th>
                   <th className="p-4">İlgi Alanı</th>
-                  <th className="p-4">E-posta</th>
                   <th className="p-4">Durum</th>
                   <th className="p-4 text-right">İşlem</th>
                 </tr>
@@ -193,18 +260,18 @@ export default function AdminB2BListPage() {
               <tbody className="divide-y divide-white/5">
                 {loading ? (
                   <tr>
-                    <td colSpan={8} className="p-8 text-center text-gray-400 font-mono">
+                    <td colSpan={9} className="p-8 text-center text-gray-400 font-mono">
                       Yükleniyor...
                     </td>
                   </tr>
                 ) : requests.length === 0 ? (
                   <tr>
-                    <td colSpan={8} className="p-8 text-center text-gray-400 font-mono">
+                    <td colSpan={9} className="p-8 text-center text-gray-400 font-mono">
                       Kayıtlı B2B başvuru bulunamadı.
                     </td>
                   </tr>
                 ) : (
-                  requests.map((req) => (
+                  requests.map((req: B2BMeetingRequestEntity & { priority?: string; score?: number }) => (
                     <tr key={req.id} className="hover:bg-white/[0.02] transition-colors">
                       <td className="p-4 font-mono font-semibold text-[#d4af37]">
                         {req.referenceNumber}
@@ -216,10 +283,18 @@ export default function AdminB2BListPage() {
                       <td className="p-4 text-gray-300">
                         {req.companyName || "-"} / {req.country || "-"}
                       </td>
+                      <td className="p-4">
+                        <div className="flex flex-col gap-1">
+                          {getPriorityBadge(req.priority)}
+                          <span className="text-[10px] font-mono text-gray-400">Puan: {req.score ?? 0}</span>
+                        </div>
+                      </td>
+                      <td className="p-4 font-mono text-[11px] text-emerald-400">
+                        {req.source || "Doğrudan Web"}
+                      </td>
                       <td className="p-4 text-gray-300 font-mono text-[11px]">
                         {req.interestArea}
                       </td>
-                      <td className="p-4 text-gray-300">{req.email}</td>
                       <td className="p-4">{getStatusBadge(req.status)}</td>
                       <td className="p-4 text-right">
                         <Link

@@ -19,6 +19,14 @@ model B2BMeetingRequest {
   message             String?
   preferredLanguage   SupportedLocale
   status              B2BRequestStatus @default(NEW)
+  requestType         String           @default("B2B_MEETING")
+  priority            String           @default("Standard")
+  score               Int              @default(0)
+  scoreReasons        String?
+  interestedProduct   String?
+  estimatedVolume     String?
+  lastContactedAt     DateTime?
+  nextFollowUpAt      DateTime?
   privacyAccepted     Boolean
   privacyVersion      String
   privacyAcceptedAt   DateTime
@@ -36,7 +44,9 @@ enum B2BRequestStatus {
   NEW
   REVIEWING
   CONTACTED
+  FOLLOW_UP
   QUALIFIED
+  NOT_INTERESTED
   CLOSED
   SPAM
 }
@@ -55,3 +65,37 @@ enum SupportedLocale {
   TR
   EN
 }
+
+model ExhibitionConfig {
+  id          String   @id @default("default")
+  active      Boolean  @default(false)
+  fairName    String?
+  city        String?
+  dates       String?
+  hall        String?
+  standNumber String?
+  ctaTextTr   String?
+  ctaTextEn   String?
+  updatedAt   DateTime @updatedAt
+}
+
+model QRCampaign {
+  id             String   @id @default(cuid())
+  name           String
+  sourceCode     String   @unique
+  targetLanguage String   @default("tr")
+  targetRoute    String   @default("/")
+  active         Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model AnalyticsEvent {
+  id         String   @id @default(cuid())
+  eventName  String
+  source     String?
+  locale     String?
+  properties String?
+  createdAt  DateTime @default(now())
+}
+

@@ -1,9 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Send, CheckCircle2, AlertCircle, Calendar, ShieldCheck } from "lucide-react";
+import { Send, CheckCircle2, AlertCircle, Calendar, ShieldCheck, RefreshCw } from "lucide-react";
 import { getDictionary } from "@/dictionaries";
+import { initSourceTracking, getStoredLeadSource } from "@/lib/source-tracking";
+import { trackEvent } from "@/lib/analytics";
 
 interface ExhibitionMeetingProps {
   lang: string;
@@ -12,6 +14,10 @@ interface ExhibitionMeetingProps {
 export default function ExhibitionMeeting({ lang }: ExhibitionMeetingProps) {
   const dict = getDictionary(lang);
   const formDict = dict.b2bMeeting.form;
+
+  useEffect(() => {
+    initSourceTracking();
+  }, []);
 
   const [formData, setFormData] = useState({
     fullName: "",
@@ -41,11 +47,14 @@ export default function ExhibitionMeeting({ lang }: ExhibitionMeetingProps) {
     setSubmitStatus("idle");
     setErrorMessage("");
 
+    trackEvent("b2b_form_submit", { areaOfInterest: formData.areaOfInterest });
+
     try {
+      const source = getStoredLeadSource();
       const response = await fetch("/api/b2b-meeting", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, source }),
       });
 
       const data = await response.json();
@@ -65,15 +74,16 @@ export default function ExhibitionMeeting({ lang }: ExhibitionMeetingProps) {
         });
       } else {
         setSubmitStatus("error");
-        setErrorMessage(data.message || formDict.errorMsg);
+        setErrorMessage(data.message || dict.offline.connectionError);
       }
     } catch {
       setSubmitStatus("error");
-      setErrorMessage(formDict.errorMsg);
+      setErrorMessage(dict.offline.connectionError);
     } finally {
       setIsSubmitting(false);
     }
   };
+
 
   return (
     <section id="b2b-meeting" className="py-24 bg-[#090b09] relative border-t border-white/5">
@@ -175,9 +185,18 @@ export default function ExhibitionMeeting({ lang }: ExhibitionMeetingProps) {
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
                 {submitStatus === "error" && (
-                  <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-xs flex items-center gap-3">
-                    <AlertCircle className="w-5 h-5 shrink-0" />
-                    <span>{errorMessage}</span>
+                  <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-xs flex items-center justify-between gap-3">
+                    <div className="flex items-center gap-2">
+                      <AlertCircle className="w-5 h-5 shrink-0" />
+                      <span>{errorMessage}</span>
+                    </div>
+                    <button
+                      type="submit"
+                      className="px-3 py-1.5 rounded-lg bg-red-500/20 hover:bg-red-500/30 text-red-300 text-xs font-medium shrink-0 border border-red-500/40 flex items-center gap-1.5 cursor-pointer"
+                    >
+                      <RefreshCw className="w-3.5 h-3.5" />
+                      <span>{dict.offline.retry}</span>
+                    </button>
                   </div>
                 )}
 

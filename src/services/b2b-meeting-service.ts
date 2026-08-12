@@ -45,7 +45,18 @@ export class B2BMeetingService {
     // 3. Server timestamp for consent
     const now = new Date();
 
-    // 4. Persistence via repository
+    // 4. Calculate Lead Score
+    const { calculateLeadScore } = await import("@/lib/lead-scoring");
+    const scoreResult = calculateLeadScore({
+      companyName: dto.companyName,
+      country: dto.country,
+      phone: dto.phone,
+      message: dto.message,
+      interestArea: dto.areaOfInterest,
+      source,
+    });
+
+    // 5. Persistence via repository
     const createdEntity = await this.repository.create({
       referenceNumber,
       fullName: dto.fullName,
@@ -63,6 +74,9 @@ export class B2BMeetingService {
       marketingVersion: dto.marketingConsent ? "v1.0" : undefined,
       marketingAcceptedAt: dto.marketingConsent ? now : undefined,
       source,
+      priority: scoreResult.priority,
+      score: scoreResult.score,
+      scoreReasons: JSON.stringify(scoreResult.reasons),
     });
 
     // 5. Trigger notifications safely (does not affect DB persistence)

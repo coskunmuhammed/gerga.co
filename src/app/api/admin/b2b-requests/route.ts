@@ -33,7 +33,7 @@ export async function GET(request: NextRequest) {
   }
 }
 
-// PATCH: Update status or internal note
+// PATCH: Update status, internal note, or follow-up dates
 export async function PATCH(request: NextRequest) {
   const isAuth = await isAdminAuthenticated();
   if (!isAuth) {
@@ -41,7 +41,7 @@ export async function PATCH(request: NextRequest) {
   }
 
   try {
-    const { id, status, internalNote, archive } = await request.json();
+    const { id, status, internalNote, archive, lastContactedAt, nextFollowUpAt } = await request.json();
 
     if (!id) {
       return NextResponse.json({ success: false, message: "ID gereklidir." }, { status: 400 });
@@ -52,13 +52,20 @@ export async function PATCH(request: NextRequest) {
       return NextResponse.json({ success: true, data: archived });
     }
 
-    if (status) {
-      const updated = await repository.updateStatus(id, status, internalNote);
-      return NextResponse.json({ success: true, data: updated });
-    }
+    const { prisma } = await import("@/lib/database/prisma");
+    const updated = await prisma.b2BMeetingRequest.update({
+      where: { id },
+      data: {
+        ...(status ? { status } : {}),
+        ...(internalNote !== undefined ? { internalNote } : {}),
+        ...(lastContactedAt !== undefined ? { lastContactedAt: lastContactedAt ? new Date(lastContactedAt) : null } : {}),
+        ...(nextFollowUpAt !== undefined ? { nextFollowUpAt: nextFollowUpAt ? new Date(nextFollowUpAt) : null } : {}),
+      },
+    });
 
-    return NextResponse.json({ success: false, message: "Geçersiz güncelleme parametresi." }, { status: 400 });
-  } catch {
+    return NextResponse.json({ success: true, data: updated });
+  } catch (error) {
+    console.error("PATCH b2b-requests error:", error);
     return NextResponse.json({ success: false, message: "Güncelleme başarısız." }, { status: 500 });
   }
 }

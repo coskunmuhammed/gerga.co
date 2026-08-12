@@ -19,6 +19,12 @@ export interface CreateB2BMeetingInput {
   marketingVersion?: string;
   marketingAcceptedAt?: Date;
   source?: string;
+  requestType?: string;
+  priority?: string;
+  score?: number;
+  scoreReasons?: string;
+  lastContactedAt?: Date;
+  nextFollowUpAt?: Date;
 }
 
 export interface B2BFilterParams {

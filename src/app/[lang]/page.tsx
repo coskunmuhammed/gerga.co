@@ -7,9 +7,12 @@ import Nursery from "@/components/Nursery";
 import Engineering from "@/components/Engineering";
 import Academy from "@/components/Academy";
 import ExhibitionMeeting from "@/components/ExhibitionMeeting";
+import PostExhibitionConversion from "@/components/PostExhibitionConversion";
+import ExhibitionBanner from "@/components/ExhibitionBanner";
 import Gallery from "@/components/Gallery";
 import ContactCard from "@/components/ContactCard";
 import Footer from "@/components/Footer";
+import { prisma } from "@/lib/database/prisma";
 
 export default async function Page({
   params,
@@ -18,8 +21,20 @@ export default async function Page({
 }) {
   const { lang } = await params;
 
+  let exhibitionConfig = null;
+  try {
+    exhibitionConfig = await prisma.exhibitionConfig.findUnique({
+      where: { id: "default" },
+    });
+  } catch {
+    // Graceful fallback if database unavailable
+  }
+
   return (
     <main className="min-h-screen bg-[#090b09] text-[#f7f5ef] selection:bg-[#d4af37] selection:text-black overflow-x-hidden">
+      {/* 0. Exhibition Mode Banner */}
+      <ExhibitionBanner lang={lang} initialConfig={exhibitionConfig} />
+
       {/* Sticky Luxury Navigation */}
       <Header lang={lang} />
 
@@ -47,13 +62,16 @@ export default async function Page({
       {/* 8. Fuar Görüşmesi ve B2B İletişim */}
       <ExhibitionMeeting lang={lang} />
 
-      {/* 9. Galeri */}
+      {/* 9. Fuar Sonrası Dönüşüm */}
+      <PostExhibitionConversion lang={lang} />
+
+      {/* 10. Galeri */}
       <Gallery lang={lang} />
 
-      {/* 10. İletişim ve Dijital Kart */}
+      {/* 11. İletişim ve Dijital Kart */}
       <ContactCard lang={lang} />
 
-      {/* 11. Footer */}
+      {/* 12. Footer */}
       <Footer lang={lang} />
     </main>
   );

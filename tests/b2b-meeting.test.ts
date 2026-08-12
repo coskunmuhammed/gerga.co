@@ -1,5 +1,7 @@
 import { createB2BMeetingSchema } from "../src/validation/b2b-meeting-schema";
 import { createSessionToken, verifySessionToken } from "../src/lib/auth/admin-session";
+import { calculateLeadScore } from "../src/lib/lead-scoring";
+import { sanitizeAnalyticsProps } from "../src/lib/analytics";
 
 function runTests() {
   console.log("Running GERGA B2B Production Test Suite...");
@@ -62,6 +64,28 @@ function runTests() {
   assert(token !== null, "Admin session token creation");
   assert(verifySessionToken(token || ""), "Verify valid admin session token");
   assert(verifySessionToken("invalid_token_xyz") === false, "Reject invalid admin session token");
+
+  // Test 8: Deterministic Lead Scoring
+  const highLead = calculateLeadScore({
+    companyName: "Global Fruit Logistics",
+    country: "Germany",
+    phone: "+491712345678",
+    message: "We need 20 tons of dried figs with private label packaging for our supermarket chain.",
+    interestArea: "WHOLESALE",
+    source: "stand-qr",
+  });
+  assert(highLead.priority === "High Priority", "Lead scoring identifies High Priority leads (score >= 60)");
+  assert(highLead.reasons.length >= 4, "Lead scoring returns explanatory reasons list");
+
+  // Test 9: Analytics PII Stripping
+  const sanitized = sanitizeAnalyticsProps({
+    fullName: "John Doe",
+    email: "john@example.com",
+    locale: "en",
+    tileId: "wholesale",
+  });
+  assert(sanitized?.fullName === undefined && sanitized?.email === undefined, "Analytics strips PII fields");
+  assert(sanitized?.locale === "en" && sanitized?.tileId === "wholesale", "Analytics preserves non-PII properties");
 
   console.log(`\nTest Summary: ${passed} Passed, ${failed} Failed.`);
   if (failed > 0) {
