@@ -34,8 +34,18 @@ export default function ExhibitionMeeting({ lang }: ExhibitionMeetingProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const [referenceNumber, setReferenceNumber] = useState("");
+  const [hasTrackedStart, setHasTrackedStart] = useState(false);
+
+  const handleFormStart = () => {
+    if (!hasTrackedStart) {
+      setHasTrackedStart(true);
+      trackEvent("b2b_form_start");
+    }
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    handleFormStart();
     const target = e.target;
     const value = target.type === "checkbox" ? (target as HTMLInputElement).checked : target.value;
     setFormData({ ...formData, [target.name]: value });
@@ -61,6 +71,7 @@ export default function ExhibitionMeeting({ lang }: ExhibitionMeetingProps) {
 
       if (response.ok && data.success) {
         setSubmitStatus("success");
+        setReferenceNumber(data.data?.referenceNumber || "");
         setFormData({
           fullName: "",
           company: "",
@@ -74,7 +85,7 @@ export default function ExhibitionMeeting({ lang }: ExhibitionMeetingProps) {
         });
       } else {
         setSubmitStatus("error");
-        setErrorMessage(data.message || dict.offline.connectionError);
+        setErrorMessage(data.error?.message || data.message || dict.offline.connectionError);
       }
     } catch {
       setSubmitStatus("error");
@@ -172,9 +183,15 @@ export default function ExhibitionMeeting({ lang }: ExhibitionMeetingProps) {
                 <h3 className="font-serif text-2xl text-white font-medium mb-3">
                   {lang === "en" ? "Meeting Request Received" : "Talebiniz Alındı"}
                 </h3>
-                <p className="text-xs sm:text-sm text-gray-300 font-light max-w-md mb-8">
+                <p className="text-xs sm:text-sm text-gray-300 font-light max-w-md mb-4">
                   {formDict.successMsg}
                 </p>
+                {referenceNumber && (
+                  <div className="mb-8 px-4 py-2 rounded-xl bg-black/60 border border-[#d4af37]/40 text-xs font-mono text-[#d4af37]">
+                    <span>{lang === "en" ? "Reference No:" : "Referans Kodu:"} </span>
+                    <strong className="font-semibold">{referenceNumber}</strong>
+                  </div>
+                )}
                 <button
                   onClick={() => setSubmitStatus("idle")}
                   className="px-6 py-3 rounded-full bg-white/10 text-white text-xs font-semibold uppercase tracking-wider hover:bg-white/20 transition-all min-h-[44px]"

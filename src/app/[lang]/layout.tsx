@@ -19,6 +19,8 @@ export async function generateStaticParams() {
   return locales.map((lang) => ({ lang }));
 }
 
+import { ContentService } from "@/services/content-service";
+
 export async function generateMetadata({
   params,
 }: {
@@ -26,15 +28,24 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { lang } = await params;
   const dict = getDictionary(lang);
+  let seo = null;
+  try {
+    seo = await ContentService.getSeoConfig(lang);
+  } catch {
+    // Fallback
+  }
+
+  const title = seo?.title || dict.meta.title;
+  const description = seo?.description || dict.meta.description;
 
   return {
-    title: dict.meta.title,
-    description: dict.meta.description,
+    title,
+    description,
     keywords: dict.meta.keywords,
     authors: [{ name: "GERGA" }],
     openGraph: {
-      title: dict.meta.title,
-      description: dict.meta.description,
+      title,
+      description,
       url: `https://gerga.co/${lang}`,
       siteName: "GERGA",
       images: [

@@ -42,9 +42,14 @@ export default function ExhibitionBanner({ lang, initialConfig }: ExhibitionBann
 
   const isEn = lang === "en";
 
+  const locationInfo = [
+    config.hall ? (isEn ? `Hall ${config.hall}` : `Salon ${config.hall}`) : "",
+    config.standNumber ? (isEn ? `Stand ${config.standNumber}` : `Stant ${config.standNumber}`) : "",
+  ].filter(Boolean).join(" / ");
+
   const defaultText = isEn
-    ? `Meet GERGA at ${config.fairName || "the exhibition"} ${config.city ? `(${config.city})` : ""} — Hall ${config.hall || "4"} / Stand ${config.standNumber || "B21"}`
-    : `GERGA ile ${config.fairName || "fuarda"} buluşun ${config.city ? `(${config.city})` : ""} — Hall ${config.hall || "4"} / Stand ${config.standNumber || "B21"}`;
+    ? `Meet GERGA at ${config.fairName || "the exhibition"}${config.city ? ` (${config.city})` : ""}${locationInfo ? ` — ${locationInfo}` : ""}`
+    : `GERGA ile ${config.fairName || "fuarda"} buluşun${config.city ? ` (${config.city})` : ""}${locationInfo ? ` — ${locationInfo}` : ""}`;
 
   const bannerText = isEn
     ? config.ctaTextEn || defaultText
@@ -84,7 +89,7 @@ export default function ExhibitionBanner({ lang, initialConfig }: ExhibitionBann
 
         <button
           onClick={handleCtaClick}
-          className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#d4af37] text-black font-semibold text-[11px] hover:bg-[#e5c158] transition-all cursor-pointer shrink-0 shadow"
+          className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#d4af37] text-black font-semibold text-[11px] hover:bg-[#e5c158] transition-all cursor-pointer shrink-0 shadow whitespace-nowrap"
         >
           <span>{ctaLabel}</span>
           <ArrowRight className="w-3.5 h-3.5" />

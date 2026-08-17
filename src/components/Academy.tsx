@@ -62,7 +62,7 @@ export default function Academy({ lang }: AcademyProps) {
 
                 <div className="mt-8 pt-6 border-t border-white/10 flex items-center justify-between">
                   <span className="text-xs font-mono text-gray-400 uppercase tracking-wider group-hover:text-[#d4af37]">
-                    Research Note #{idx + 1}
+                    {(dict.academy as Record<string, unknown>).researchNote as string || (lang === "en" ? "Research Note" : "Araştırma Notu")} #{idx + 1}
                   </span>
                   <BookOpen className="w-4 h-4 text-gray-500 group-hover:text-[#d4af37] transition-colors" />
                 </div>

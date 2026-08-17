@@ -14,7 +14,7 @@ async function main() {
       email: "h.mueller@eurofruit.de",
       phone: "+491712345678",
       interestArea: B2BInterestArea.PRODUCT_SUPPLY,
-      message: "We are interested in sourcing organic dried figs in bulk 5kg wooden crates for German retail chains.",
+      message: "We are interested in sourcing Aegean dried figs in bulk 5kg wooden crates for German retail chains.",
       preferredLanguage: SupportedLocale.EN,
       status: B2BRequestStatus.NEW,
       privacyAccepted: true,

@@ -8,9 +8,11 @@ import { MEDIA_CONFIG } from "@/config/media";
 
 interface NurseryProps {
   lang: string;
+  saplingsData?: unknown[];
 }
 
-export default function Nursery({ lang }: NurseryProps) {
+export default function Nursery({ lang, saplingsData }: NurseryProps) {
+  void saplingsData;
   const dict = getDictionary(lang);
   const media = MEDIA_CONFIG.nursery;
 

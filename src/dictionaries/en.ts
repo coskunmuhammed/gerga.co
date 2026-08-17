@@ -238,6 +238,7 @@ export const en = {
         text: "Guidance on pruning techniques, pest monitoring, and timely harvesting.",
       },
     ],
+    researchNote: "Research Note",
   },
   b2bMeeting: {
     tag: "SECTION 07 — EXHIBITION MEETING",

@@ -40,7 +40,7 @@ export default function Aegean({ lang }: AegeanProps) {
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#d4af37]/40 bg-black/70 backdrop-blur-md mb-6">
               <MapPin className="w-3.5 h-3.5 text-[#d4af37]" />
               <span className="text-xs font-mono tracking-[0.2em] text-[#d4af37] uppercase">
-                Büyük Menderes Basin • Aydın, Turkey
+                {lang === "en" ? "Büyük Menderes Basin • Aydın, Turkey" : "Büyük Menderes Havzası • Aydın, Türkiye"}
               </span>
             </div>
 
@@ -65,7 +65,7 @@ export default function Aegean({ lang }: AegeanProps) {
               </span>
             </div>
             <h3 className="font-serif text-2xl sm:text-3xl text-white">
-              Doğal İklim ve Toprak Dengesi
+              {dict.aegean.subtitle}
             </h3>
           </div>
           <div className="flex flex-col max-w-xl">

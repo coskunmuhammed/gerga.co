@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Send, CheckCircle2, AlertCircle, Package } from "lucide-react";
 import { getDictionary } from "@/dictionaries";
@@ -33,6 +33,13 @@ export default function SampleRequestModal({ isOpen, onClose, lang }: SampleRequ
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const [referenceNumber, setReferenceNumber] = useState("");
+
+  useEffect(() => {
+    if (isOpen) {
+      trackEvent("sample_request_start");
+    }
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
@@ -66,6 +73,7 @@ export default function SampleRequestModal({ isOpen, onClose, lang }: SampleRequ
 
       if (response.ok && data.success) {
         setSubmitStatus("success");
+        setReferenceNumber(data.referenceNumber || "");
       } else {
         setSubmitStatus("error");
         setErrorMessage(data.message || dict.offline.connectionError);
@@ -119,9 +127,15 @@ export default function SampleRequestModal({ isOpen, onClose, lang }: SampleRequ
               <h4 className="font-serif text-2xl text-white font-medium mb-2">
                 {sampleDict.successTitle}
               </h4>
-              <p className="text-sm text-gray-300 font-light max-w-md mb-6 leading-relaxed">
+              <p className="text-sm text-gray-300 font-light max-w-md mb-4 leading-relaxed">
                 {sampleDict.successMsg}
               </p>
+              {referenceNumber && (
+                <div className="mb-6 px-4 py-2 rounded-xl bg-black/60 border border-[#d4af37]/40 text-xs font-mono text-[#d4af37]">
+                  <span>{isEn ? "Reference No:" : "Referans Kodu:"} </span>
+                  <strong className="font-semibold">{referenceNumber}</strong>
+                </div>
+              )}
               <button
                 onClick={onClose}
                 className="px-6 py-3 rounded-full bg-[#d4af37] text-black text-xs font-semibold uppercase tracking-wider hover:bg-[#e5c158] transition-all min-h-[44px]"

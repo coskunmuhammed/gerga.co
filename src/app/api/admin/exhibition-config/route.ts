@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/database/prisma";
+import { isAdminAuthenticated } from "@/lib/auth/admin-session";
 
 export async function GET() {
   try {
@@ -29,6 +30,11 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
+  const isAuth = await isAdminAuthenticated();
+  if (!isAuth) {
+    return NextResponse.json({ success: false, message: "Yetkisiz erişim." }, { status: 401 });
+  }
+
   try {
     const body = await request.json();
     const { active, fairName, city, dates, hall, standNumber, ctaTextTr, ctaTextEn } = body;

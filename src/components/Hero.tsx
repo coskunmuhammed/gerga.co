@@ -8,14 +8,30 @@ import { MEDIA_CONFIG } from "@/config/media";
 
 interface HeroProps {
   lang: string;
+  content?: {
+    trOverline?: string;
+    enOverline?: string;
+    trHeadline?: string;
+    enHeadline?: string;
+    trDescription?: string;
+    enDescription?: string;
+    trPrimaryCta?: string;
+    enPrimaryCta?: string;
+  } | null;
 }
 
-export default function Hero({ lang }: HeroProps) {
+export default function Hero({ lang, content }: HeroProps) {
   const dict = getDictionary(lang);
   const media = MEDIA_CONFIG.hero;
+  const isEn = lang === "en";
+
+  const overline = isEn ? (content?.enOverline || dict.hero.overline) : (content?.trOverline || dict.hero.overline);
+  const headline = isEn ? (content?.enHeadline || dict.hero.headline) : (content?.trHeadline || dict.hero.headline);
+  const description = isEn ? (content?.enDescription || dict.hero.description) : (content?.trDescription || dict.hero.description);
+  const primaryCta = isEn ? (content?.enPrimaryCta || dict.hero.primaryCta) : (content?.trPrimaryCta || dict.hero.primaryCta);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-24 pb-16 overflow-hidden bg-[#090b09]">
+    <section className="relative min-h-[calc(100vh-80px)] flex items-center justify-center pt-12 sm:pt-16 pb-16 overflow-hidden bg-[#090b09]">
       {/* Hero Photography Overlay with Alt tag */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -39,7 +55,7 @@ export default function Hero({ lang }: HeroProps) {
         >
           <Sparkles className="w-3.5 h-3.5 text-[#d4af37]" />
           <span className="text-[10px] sm:text-xs font-mono tracking-[0.2em] text-[#d4af37] uppercase font-semibold">
-            {dict.hero.overline}
+            {overline}
           </span>
         </motion.div>
 
@@ -50,7 +66,7 @@ export default function Hero({ lang }: HeroProps) {
           transition={{ duration: 0.8, delay: 0.15 }}
           className="font-serif text-3xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight text-white leading-[1.1] font-light max-w-5xl"
         >
-          {dict.hero.headline}
+          {headline}
         </motion.h1>
 
         {/* Core Description */}
@@ -60,7 +76,7 @@ export default function Hero({ lang }: HeroProps) {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="mt-6 sm:mt-8 text-base sm:text-xl text-gray-200 font-light max-w-3xl leading-relaxed tracking-wide font-sans"
         >
-          {dict.hero.description}
+          {description}
         </motion.p>
 
         {/* Action Buttons (Min 44px height for mobile touch targets) */}
@@ -74,7 +90,7 @@ export default function Hero({ lang }: HeroProps) {
             href="#intro"
             className="w-full sm:w-auto px-8 py-4 min-h-[48px] rounded-full bg-[#d4af37] text-black font-semibold text-xs uppercase tracking-[0.2em] shadow-xl hover:bg-[#e5c158] transition-all duration-300 flex items-center justify-center gap-3 group"
           >
-            <span>{dict.hero.primaryCta}</span>
+            <span>{primaryCta}</span>
             <ArrowDownRight className="w-4 h-4 group-hover:translate-x-1 group-hover:translate-y-1 transition-transform" />
           </a>
 

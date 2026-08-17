@@ -10,15 +10,29 @@ import {
   FileText,
 } from "lucide-react";
 import { getDictionary } from "@/dictionaries";
+import { trackEvent } from "@/lib/analytics";
 
 interface ContactCardProps {
   lang: string;
+  contactData?: {
+    phone?: string;
+    publicEmail?: string;
+    whatsapp?: string;
+    addressTr?: string;
+    addressEn?: string;
+  } | null;
 }
 
-export default function ContactCard({ lang }: ContactCardProps) {
+export default function ContactCard({ lang, contactData }: ContactCardProps) {
   const dict = getDictionary(lang);
+  const isEn = lang === "en";
+
+  const phoneValue = contactData?.phone || dict.contact.phone;
+  const emailValue = contactData?.publicEmail || "info@gerga.co";
+  const addressValue = isEn ? (contactData?.addressEn || dict.contact.address) : (contactData?.addressTr || dict.contact.address);
 
   const generateVcard = () => {
+    trackEvent("vcard_download", { locale: lang });
     const vcardData = `BEGIN:VCARD
 VERSION:3.0
 N:GERGA;Exhibition Desk;;;
@@ -41,6 +55,10 @@ END:VCARD`;
     link.click();
     document.body.removeChild(link);
   };
+
+  const waText = lang === "en" 
+    ? encodeURIComponent("Hello GERGA Team, I visited gerga.co") 
+    : encodeURIComponent("Merhaba GERGA Ekibi, gerga.co sitemiz üzerinden iletişime geçiyorum.");
 
   return (
     <section id="contact" className="py-24 bg-[#090b09] relative border-t border-white/5">
@@ -136,9 +154,10 @@ END:VCARD`;
 
             {/* Direct WhatsApp Action */}
             <a
-              href="https://wa.me/908508854374?text=Hello%20GERGA%20Team%2C%20I%20visited%20gerga.co"
+              href={`https://wa.me/908508854374?text=${waText}`}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackEvent("whatsapp_click")}
               className="w-full py-3.5 rounded-xl border border-emerald-500/40 bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500 hover:text-black font-semibold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 min-h-[44px]"
             >
               <MessageCircle className="w-4 h-4" />
@@ -165,7 +184,7 @@ END:VCARD`;
                     {dict.contact.pdfCatalogTitle}
                   </span>
                   <span className="px-2.5 py-0.5 rounded-full bg-white/10 text-[10px] font-mono text-[#d4af37]">
-                    Coming Soon
+                    {lang === "en" ? "Coming Soon" : "Yakında"}
                   </span>
                 </div>
                 <p className="text-xs text-gray-300 font-light mt-1">
@@ -184,7 +203,7 @@ END:VCARD`;
                   {dict.contact.addressTitle}
                 </span>
                 <h4 className="font-serif text-base text-white font-medium mt-1">
-                  {dict.contact.address}
+                  {addressValue}
                 </h4>
               </div>
             </div>
@@ -199,10 +218,11 @@ END:VCARD`;
                   {dict.contact.emailTitle}
                 </span>
                 <a
-                  href={`mailto:${dict.contact.email}`}
+                  href={`mailto:${emailValue}`}
+                  onClick={() => trackEvent("email_click")}
                   className="font-serif text-base text-[#d4af37] font-medium mt-1 block hover:underline"
                 >
-                  {dict.contact.email}
+                  {emailValue}
                 </a>
               </div>
             </div>
@@ -217,10 +237,10 @@ END:VCARD`;
                   {dict.contact.phoneTitle}
                 </span>
                 <a
-                  href={`tel:${dict.contact.phone}`}
-                  className="font-serif text-base text-white font-medium mt-1 block hover:text-[#d4af37]"
+                  href={`tel:${phoneValue}`}
+                  className="font-serif text-base text-white font-medium mt-1 block hover:text-[#d4af37] transition-colors"
                 >
-                  {dict.contact.phone}
+                  {phoneValue}
                 </a>
               </div>
             </div>

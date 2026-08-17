@@ -20,6 +20,8 @@ export interface B2BMeetingRequestEntity {
   marketingVersion?: string | null;
   marketingAcceptedAt?: Date | null;
   source?: string | null;
+  interestedProduct?: string | null;
+  estimatedVolume?: string | null;
   internalNote?: string | null;
   createdAt: Date;
   updatedAt: Date;

@@ -42,7 +42,7 @@ export const tr = {
     },
   },
   sampleRequest: {
-    title: "Numune Talebi / Request Samples",
+    title: "Numune Talebi",
     subtitle: "GERGA Kuru İncir ürünlerimizi kurumsal projeleriniz için değerlendirmek üzere numune başvurusunda bulunun.",
     fullName: "Ad Soyad",
     company: "Şirket Adı",
@@ -238,6 +238,7 @@ export const tr = {
         text: "Budama, hastalık takibi ve doğru zamanlı hasat tekniklerinin aktarılması.",
       },
     ],
+    researchNote: "Araştırma Notu",
   },
   b2bMeeting: {
     tag: "BÖLÜM 07 — FUAR GÖRÜŞMESİ",

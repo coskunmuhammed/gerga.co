@@ -36,7 +36,7 @@ export default function AdminB2BListPage() {
       }
     } catch {
       console.error("Failed to load B2B requests.");
-    } flex: {
+    } finally {
       setLoading(false);
     }
   };

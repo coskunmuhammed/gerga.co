@@ -67,16 +67,216 @@ enum SupportedLocale {
 }
 
 model ExhibitionConfig {
-  id          String   @id @default("default")
-  active      Boolean  @default(false)
-  fairName    String?
-  city        String?
-  dates       String?
-  hall        String?
-  standNumber String?
-  ctaTextTr   String?
-  ctaTextEn   String?
-  updatedAt   DateTime @updatedAt
+  id               String   @id @default("default")
+  active           Boolean  @default(false)
+  fairName         String?
+  city             String?
+  country          String?
+  dates            String?
+  startDate        String?
+  endDate          String?
+  hall             String?
+  standNumber      String?
+  ctaTextTr        String?
+  ctaTextEn        String?
+  ctaTarget        String?
+  fairLogo         String?
+  websiteUrl       String?
+  fairNotes        String?
+  contactPerson    String?
+  contactWhatsapp  String?
+  contactEmail     String?
+  activeCampaignId String?
+  postExhibition   Boolean  @default(false)
+  updatedAt        DateTime @updatedAt
+}
+
+enum ContentStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+enum PortfolioType {
+  MAIN
+  PLANNED
+}
+
+model SectionConfig {
+  id         String   @id @default(cuid())
+  sectionKey String   @unique
+  sortOrder  Int      @default(0)
+  active     Boolean  @default(true)
+  navVisible Boolean  @default(true)
+  titleTr    String
+  titleEn    String
+  updatedAt  DateTime @updatedAt
+}
+
+model SiteContent {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  dataJson  String
+  updatedAt DateTime @updatedAt
+}
+
+model Product {
+  id                   String        @id @default(cuid())
+  status               ContentStatus @default(PUBLISHED)
+  portfolioType        PortfolioType @default(MAIN)
+  sortOrder            Int           @default(0)
+  nameTr               String
+  nameEn               String
+  shortDescTr          String
+  shortDescEn          String
+  fullDescTr           String?
+  fullDescEn           String?
+  coverImage           String?
+  galleryJson          String?
+  category             String        @default("Dried Figs")
+  specsJson            String?
+  packagingTr          String?
+  packagingEn          String?
+  originTr             String?
+  originEn             String?
+  verificationStatus   String        @default("VERIFIED")
+  documentsJson        String?
+  ctaLabelTr           String?
+  ctaLabelEn           String?
+  ctaDestination       String?
+  sampleRequestEnabled Boolean       @default(true)
+  seoTitleTr           String?
+  seoTitleEn           String?
+  seoDescTr            String?
+  seoDescEn            String?
+  createdAt            DateTime      @default(now())
+  updatedAt            DateTime      @updatedAt
+}
+
+model Sapling {
+  id                     String        @id @default(cuid())
+  status                 ContentStatus @default(PUBLISHED)
+  varietyCode            String        @unique
+  nameTr                 String
+  nameEn                 String
+  descTr                 String
+  descEn                 String
+  imagesJson             String?
+  specsJson              String?
+  verificationStatus     String        @default("VERIFIED")
+  documentsJson          String?
+  seasonalAvailabilityTr String?
+  seasonalAvailabilityEn String?
+  sampleQuoteEnabled     Boolean       @default(true)
+  ctaLabelTr             String?
+  ctaLabelEn             String?
+  sortOrder              Int           @default(0)
+  publicVisibility       Boolean       @default(true)
+  createdAt              DateTime      @default(now())
+  updatedAt              DateTime      @updatedAt
+}
+
+model Service {
+  id             String        @id @default(cuid())
+  status         ContentStatus @default(PUBLISHED)
+  serviceType    String        @default("ORCHARD_SETUP")
+  titleTr        String
+  titleEn        String
+  descTr         String
+  descEn         String
+  stepsJson      String?
+  heroImage      String?
+  ctaLabelTr     String?
+  ctaLabelEn     String?
+  ctaDestination String?
+  sortOrder      Int           @default(0)
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+}
+
+model MediaAsset {
+  id            String   @id @default(cuid())
+  filename      String
+  url           String
+  altTextTr     String?
+  altTextEn     String?
+  category      String   @default("Gallery")
+  isPlaceholder Boolean  @default(false)
+  inUseCount    Int      @default(0)
+  createdAt     DateTime @default(now())
+}
+
+model SocialLink {
+  id        String   @id @default(cuid())
+  platform  String
+  url       String
+  active    Boolean  @default(true)
+  sortOrder Int      @default(0)
+  updatedAt DateTime @updatedAt
+}
+
+model LegalDocument {
+  id           String   @id @default(cuid())
+  documentType String
+  language     String
+  version      String
+  content      String
+  active       Boolean  @default(true)
+  publishedAt  DateTime @default(now())
+  createdAt    DateTime @default(now())
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  action    String
+  entity    String
+  entityId  String?
+  summary   String
+  adminUser String   @default("admin")
+  timestamp DateTime @default(now())
+}
+
+model GlobalSettings {
+  id                    String   @id @default("default")
+  liveMode              Boolean  @default(true)
+  maintenanceMode       Boolean  @default(false)
+  defaultLanguage       String   @default("tr")
+  whatsappWidgetEnabled Boolean  @default(true)
+  catalogueEnabled      Boolean  @default(true)
+  galleryEnabled        Boolean  @default(true)
+  updatedAt             DateTime @updatedAt
+}
+
+model ContactConfig {
+  id               String   @id @default("default")
+  companyLegalName String   @default("GERGA Tarım San. ve Tic. A.Ş.")
+  displayBrandName String   @default("GERGA Aegean Agriculture")
+  contactPerson    String?
+  publicEmail      String   @default("info@gerga.co")
+  b2bEmail         String   @default("b2b@gerga.co")
+  phone            String   @default("+90 850 885 43 74")
+  whatsapp         String   @default("+90 850 885 43 74")
+  addressTr        String   @default("Büyük Menderes Havzası, Aydın, Türkiye")
+  addressEn        String   @default("Büyük Menderes Basin, Aydın, Turkey")
+  city             String   @default("Aydın")
+  country          String   @default("Türkiye")
+  websiteUrl       String   @default("https://gerga.co")
+  googleMapsUrl    String?
+  openingNotesTr   String?
+  openingNotesEn   String?
+  updatedAt        DateTime @updatedAt
+}
+
+model SeoConfig {
+  id              String   @id @default("default")
+  siteWideTitleTr String   @default("GERGA | Ege İnciri & B2B İhracat")
+  siteWideTitleEn String   @default("GERGA | Aegean Dried Figs & B2B Export")
+  siteWideDescTr  String   @default("Ege'nin köklü mirasıyla premium kuru incir üretimi, fidanlık ve bahçe kurulumu.")
+  siteWideDescEn  String   @default("Premium Aegean dried fig production, sapling nursery and orchard establishment.")
+  ogImage         String?
+  siteName        String   @default("GERGA Aegean Agriculture")
+  indexingEnabled Boolean  @default(true)
+  updatedAt       DateTime @updatedAt
 }
 
 model QRCampaign {
@@ -98,4 +298,3 @@ model AnalyticsEvent {
   properties String?
   createdAt  DateTime @default(now())
 }
-

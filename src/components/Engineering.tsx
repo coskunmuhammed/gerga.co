@@ -8,9 +8,11 @@ import { MEDIA_CONFIG } from "@/config/media";
 
 interface EngineeringProps {
   lang: string;
+  servicesData?: unknown[];
 }
 
-export default function Engineering({ lang }: EngineeringProps) {
+export default function Engineering({ lang, servicesData }: EngineeringProps) {
+  void servicesData;
   const dict = getDictionary(lang);
   const media = MEDIA_CONFIG.engineering;
 
@@ -67,7 +69,7 @@ export default function Engineering({ lang }: EngineeringProps) {
               <span>{media.caption?.[lang === "en" ? "en" : "tr"]}</span>
             </div>
             <span className="text-[10px] text-[#d4af37] uppercase tracking-widest bg-[#d4af37]/10 px-3 py-1 rounded-full border border-[#d4af37]/30">
-              Saha Uygulaması
+              {lang === "en" ? "Field Execution" : "Saha Uygulaması"}
             </span>
           </div>
         </motion.div>
@@ -85,7 +87,7 @@ export default function Engineering({ lang }: EngineeringProps) {
             >
               <div>
                 <div className="text-xs font-mono text-[#d4af37] mb-3">
-                  {`0${idx + 1} // ADIM`}
+                  {`0${idx + 1} // ${lang === "en" ? "STEP" : "ADIM"}`}
                 </div>
                 <h4 className="font-serif text-lg text-white font-medium mb-3">
                   {service.name}
@@ -97,7 +99,7 @@ export default function Engineering({ lang }: EngineeringProps) {
 
               <div className="mt-6 pt-4 border-t border-white/10 flex items-center gap-2 text-[11px] font-mono text-[#d4af37]">
                 <CheckCircle2 className="w-3.5 h-3.5" />
-                <span>GERGA Hizmet Standardı</span>
+                <span>{lang === "en" ? "GERGA Service Standard" : "GERGA Hizmet Standardı"}</span>
               </div>
             </motion.div>
           ))}

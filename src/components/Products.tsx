@@ -6,14 +6,37 @@ import Image from "next/image";
 import { ArrowUpRight, Info } from "lucide-react";
 import { getDictionary } from "@/dictionaries";
 import ProductModal, { ProductItem } from "./ProductModal";
+import { trackEvent } from "@/lib/analytics";
 
 interface ProductsProps {
   lang: string;
+  productsData?: unknown[];
 }
 
-export default function Products({ lang }: ProductsProps) {
+export default function Products({ lang, productsData }: ProductsProps) {
   const dict = getDictionary(lang);
   const [selectedProduct, setSelectedProduct] = useState<ProductItem | null>(null);
+
+  const displayItems = (productsData && productsData.length > 0)
+    ? productsData.map((raw) => {
+        const p = raw as Record<string, unknown>;
+        return {
+          id: String(p.id || ""),
+          name: String(p.name || ""),
+          category: String(p.category || (lang === "en" ? "Dried Figs" : "Kuru İncir")),
+          desc: String(p.shortDesc || ""),
+          details: String(p.fullDesc || p.shortDesc || ""),
+          specs: typeof p.specsJson === "string" ? JSON.parse(p.specsJson) : [],
+          image: String(p.coverImage || "/images/products/dry-figs-1.jpg"),
+          statusBadge: p.portfolioType === "PLANNED" ? (lang === "en" ? "PLANNED PORTFOLIO" : "GELECEK PLANLAMASI") : undefined,
+        };
+      })
+    : dict.products.items;
+
+  const handleProductClick = (item: ProductItem) => {
+    trackEvent("product_view", { productId: item.id });
+    setSelectedProduct(item);
+  };
 
   return (
     <section id="products" className="py-24 bg-[#090b09] relative border-t border-white/5">
@@ -44,21 +67,21 @@ export default function Products({ lang }: ProductsProps) {
 
         {/* Products Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {dict.products.items.map((item, index) => (
+          {displayItems.map((item, index) => (
             <motion.div
               key={item.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: index * 0.15 }}
-              onClick={() => setSelectedProduct(item as ProductItem)}
+              onClick={() => handleProductClick(item as ProductItem)}
               className="glass-card rounded-3xl overflow-hidden cursor-pointer group flex flex-col justify-between border border-white/10"
             >
               {/* Product Image Box */}
               <div className="relative aspect-[16/10] w-full bg-black overflow-hidden">
                 <Image
                   src={item.image}
-                  alt={`${item.name} - Ege inciri temsilî görsel`}
+                  alt={lang === "en" ? `${item.name} - Representative Aegean fig visual` : `${item.name} - Ege inciri temsilî görsel`}
                   fill
                   className="object-cover img-editorial filter brightness-90 contrast-105"
                 />

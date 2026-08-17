@@ -39,6 +39,11 @@ export default function Header({ lang }: HeaderProps) {
     const segments = pathname.split("/").filter(Boolean);
     if (segments.length > 0 && (segments[0] === "tr" || segments[0] === "en")) {
       segments[0] = newLang;
+      if (newLang === "en" && segments[1] === "katalog") {
+        segments[1] = "catalogue";
+      } else if (newLang === "tr" && segments[1] === "catalogue") {
+        segments[1] = "katalog";
+      }
     } else {
       segments.unshift(newLang);
     }
@@ -63,15 +68,15 @@ export default function Header({ lang }: HeaderProps) {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`w-full transition-all duration-500 relative z-40 ${
         isScrolled
-          ? "glass-header py-3 shadow-2xl"
-          : "bg-gradient-to-b from-black/80 via-black/40 to-transparent py-4"
+          ? "glass-header py-2.5 shadow-2xl"
+          : "bg-gradient-to-b from-black/90 via-black/50 to-transparent py-3.5"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 flex items-center justify-between">
         {/* Brand Logo & Emblem */}
-        <Link href={`/${lang}`} className="group flex items-center gap-2.5">
+        <Link href={`/${lang}`} className="group flex items-center gap-2.5 shrink-0">
           <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-[#d4af37]/40 flex items-center justify-center bg-[#090b09]/80 group-hover:border-[#d4af37] transition-all">
             <span className="text-[#d4af37] font-serif text-lg font-bold tracking-widest">
               G
@@ -88,12 +93,12 @@ export default function Header({ lang }: HeaderProps) {
         </Link>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
+        <nav className="hidden lg:flex items-center gap-2.5 xl:gap-5 2xl:gap-7 overflow-x-auto scrollbar-none">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="text-[11px] uppercase tracking-[0.16em] text-gray-300 hover:text-[#d4af37] transition-colors font-medium relative group py-1"
+              className="text-[10px] xl:text-[11px] uppercase tracking-[0.12em] xl:tracking-[0.16em] text-gray-300 hover:text-[#d4af37] transition-colors font-medium relative group py-1 whitespace-nowrap shrink-0"
             >
               {link.label}
               <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#d4af37] transition-all duration-300 group-hover:w-full" />

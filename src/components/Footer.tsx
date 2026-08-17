@@ -7,9 +7,17 @@ import { getDictionary } from "@/dictionaries";
 
 interface FooterProps {
   lang: string;
+  contactData?: {
+    phone?: string;
+    publicEmail?: string;
+    whatsapp?: string;
+    addressTr?: string;
+    addressEn?: string;
+  } | null;
 }
 
-export default function Footer({ lang }: FooterProps) {
+export default function Footer({ lang, contactData }: FooterProps) {
+  void contactData;
   const dict = getDictionary(lang);
   const pathname = usePathname();
   const router = useRouter();

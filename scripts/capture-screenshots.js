@@ -5,12 +5,14 @@ const path = require("path");
 
 const SCREENSHOT_DIR = path.join(__dirname, "..", "docs", "exhibition", "screenshots");
 
+const BASE_URL = process.env.BASE_URL || "http://localhost:3005";
+
 if (!fs.existsSync(SCREENSHOT_DIR)) {
   fs.mkdirSync(SCREENSHOT_DIR, { recursive: true });
 }
 
 async function capture() {
-  console.log("Starting QA screenshot capture...");
+  console.log(`Starting QA screenshot capture targeting ${BASE_URL}...`);
   const browser = await puppeteer.launch({
     headless: "new",
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
@@ -21,19 +23,19 @@ async function capture() {
   // 1. Desktop /tr 1440px
   console.log("Capturing Desktop /tr 1440px...");
   await page.setViewport({ width: 1440, height: 900 });
-  await page.goto("http://localhost:3005/tr", { waitUntil: "networkidle0" });
+  await page.goto(`${BASE_URL}/tr`, { waitUntil: "networkidle0" });
   await page.screenshot({ path: path.join(SCREENSHOT_DIR, "desktop_tr_full.png"), fullPage: true });
   await page.screenshot({ path: path.join(SCREENSHOT_DIR, "desktop_tr_hero.png") });
 
   // 2. Desktop /en 1440px
   console.log("Capturing Desktop /en 1440px...");
-  await page.goto("http://localhost:3005/en", { waitUntil: "networkidle0" });
+  await page.goto(`${BASE_URL}/en`, { waitUntil: "networkidle0" });
   await page.screenshot({ path: path.join(SCREENSHOT_DIR, "desktop_en_full.png"), fullPage: true });
 
   // 3. Mobile /tr 390px
   console.log("Capturing Mobile /tr 390px...");
   await page.setViewport({ width: 390, height: 844, isMobile: true, hasTouch: true });
-  await page.goto("http://localhost:3005/tr", { waitUntil: "networkidle0" });
+  await page.goto(`${BASE_URL}/tr`, { waitUntil: "networkidle0" });
   await page.screenshot({ path: path.join(SCREENSHOT_DIR, "mobile_tr_full.png"), fullPage: true });
   await page.screenshot({ path: path.join(SCREENSHOT_DIR, "mobile_tr_hero.png") });
 
@@ -47,12 +49,12 @@ async function capture() {
 
   // 4. Mobile /en 390px
   console.log("Capturing Mobile /en 390px...");
-  await page.goto("http://localhost:3005/en", { waitUntil: "networkidle0" });
+  await page.goto(`${BASE_URL}/en`, { waitUntil: "networkidle0" });
   await page.screenshot({ path: path.join(SCREENSHOT_DIR, "mobile_en_full.png"), fullPage: true });
 
   // Specific section screenshots (Desktop)
   await page.setViewport({ width: 1440, height: 900 });
-  await page.goto("http://localhost:3005/tr", { waitUntil: "networkidle0" });
+  await page.goto(`${BASE_URL}/tr`, { waitUntil: "networkidle0" });
 
   const sections = [
     { id: "#products", name: "section_products.png" },
@@ -74,7 +76,7 @@ async function capture() {
 
   // 5. Admin Panel Screenshots
   console.log("Capturing Admin Panel...");
-  await page.goto("http://localhost:3005/admin/giris", { waitUntil: "domcontentloaded" });
+  await page.goto(`${BASE_URL}/admin/giris`, { waitUntil: "domcontentloaded" });
   await page.waitForSelector('input[type="password"]', { timeout: 5000 });
   await page.type('input[type="password"]', "GergaExhibition2026Admin!");
   await page.click('button[type="submit"]');

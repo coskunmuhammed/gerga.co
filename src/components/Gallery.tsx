@@ -126,7 +126,7 @@ export default function Gallery({ lang }: GalleryProps) {
                 </h4>
                 <div className="mt-2 flex items-center gap-2 text-xs text-gray-300 font-mono">
                   <Maximize2 className="w-3.5 h-3.5 text-[#d4af37]" />
-                  <span>Tam Ekran İncele</span>
+                  <span>{lang === "en" ? "View Full Screen" : "Tam Ekran İncele"}</span>
                 </div>
               </div>
             </motion.div>
