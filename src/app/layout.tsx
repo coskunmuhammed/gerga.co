@@ -18,14 +18,14 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: "/icon.svg", type: "image/svg+xml" },
-      { url: "/images/logo.svg", type: "image/svg+xml" },
     ],
+    shortcut: "/icon.svg",
     apple: "/icon.svg",
   },
   openGraph: {
     title: "GERGA | Aegean Agriculture & Innovation",
     description: "Büyük Menderes Havzası Aydın İnciri, Fidan ve Bahçe Kurulumu B2B Portalı",
-    images: ["/images/logo-purple.svg"],
+    images: ["/icon.svg"],
   },
 };
 

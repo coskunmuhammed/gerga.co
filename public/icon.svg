@@ -1,25 +1,66 @@
-<svg width="64" height="64" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="400" height="400" rx="80" fill="#472248"/>
-  <path d="M 60 120 L 200 50 L 340 120" stroke="#FAF5EF" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
-  <line x1="50" y1="120" x2="350" y2="120" stroke="#FAF5EF" stroke-width="12" stroke-linecap="round" />
-  <rect x="75" y="146" width="36" height="12" rx="2" fill="#FAF5EF" />
-  <rect x="125" y="146" width="36" height="12" rx="2" fill="#FAF5EF" />
-  <rect x="239" y="146" width="36" height="12" rx="2" fill="#FAF5EF" />
-  <rect x="289" y="146" width="36" height="12" rx="2" fill="#FAF5EF" />
-  <line x1="82" y1="156" x2="82" y2="242" stroke="#FAF5EF" stroke-width="10" />
-  <line x1="104" y1="156" x2="104" y2="242" stroke="#FAF5EF" stroke-width="10" />
-  <line x1="132" y1="156" x2="132" y2="242" stroke="#FAF5EF" stroke-width="10" />
-  <line x1="154" y1="156" x2="154" y2="242" stroke="#FAF5EF" stroke-width="10" />
-  <line x1="246" y1="156" x2="246" y2="242" stroke="#FAF5EF" stroke-width="10" />
-  <line x1="268" y1="156" x2="268" y2="242" stroke="#FAF5EF" stroke-width="10" />
-  <line x1="296" y1="156" x2="296" y2="242" stroke="#FAF5EF" stroke-width="10" />
-  <line x1="318" y1="156" x2="318" y2="242" stroke="#FAF5EF" stroke-width="10" />
-  <rect x="75" y="242" width="36" height="12" rx="2" fill="#FAF5EF" />
-  <rect x="125" y="242" width="36" height="12" rx="2" fill="#FAF5EF" />
-  <rect x="239" y="242" width="36" height="12" rx="2" fill="#FAF5EF" />
-  <rect x="289" y="242" width="36" height="12" rx="2" fill="#FAF5EF" />
-  <path d="M 200 154 C 192 175 158 190 158 220 C 158 244 176 252 200 252 C 224 252 242 244 242 220 C 242 190 208 175 200 154 Z" stroke="#FAF5EF" stroke-width="10" stroke-linecap="round" fill="none" />
-  <path d="M 200 158 C 200 190 200 225 200 252" stroke="#FAF5EF" stroke-width="8" stroke-linecap="round" />
-  <line x1="60" y1="252" x2="340" y2="252" stroke="#FAF5EF" stroke-width="12" stroke-linecap="round" />
-  <line x1="42" y1="270" x2="358" y2="270" stroke="#FAF5EF" stroke-width="12" stroke-linecap="round" />
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Circular Dark Purple Plum Background -->
+  <circle cx="256" cy="256" r="256" fill="#472248"/>
+  
+  <!-- Outer Decorative Ring Line -->
+  <circle cx="256" cy="256" r="240" stroke="#FAF5EF" stroke-width="5" stroke-dasharray="none" fill="none"/>
+
+  <!-- Pediment Roof (Triangle) -->
+  <path d="M 110 160 L 256 80 L 402 160" stroke="#FAF5EF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 132 160 L 256 98 L 380 160" stroke="#FAF5EF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Entablature Beams -->
+  <line x1="95" y1="160" x2="417" y2="160" stroke="#FAF5EF" stroke-width="8" stroke-linecap="round" />
+  <line x1="95" y1="176" x2="417" y2="176" stroke="#FAF5EF" stroke-width="8" stroke-linecap="round" />
+  <line x1="115" y1="190" x2="397" y2="190" stroke="#FAF5EF" stroke-width="6" stroke-linecap="round" />
+
+  <!-- Column Capitals -->
+  <rect x="125" y="190" width="40" height="12" rx="2" fill="#FAF5EF" />
+  <rect x="185" y="190" width="40" height="12" rx="2" fill="#FAF5EF" />
+  <rect x="287" y="190" width="40" height="12" rx="2" fill="#FAF5EF" />
+  <rect x="347" y="190" width="40" height="12" rx="2" fill="#FAF5EF" />
+
+  <!-- Column Shafts -->
+  <line x1="133" y1="202" x2="133" y2="305" stroke="#FAF5EF" stroke-width="6" />
+  <line x1="157" y1="202" x2="157" y2="305" stroke="#FAF5EF" stroke-width="6" />
+  <line x1="193" y1="202" x2="193" y2="305" stroke="#FAF5EF" stroke-width="6" />
+  <line x1="217" y1="202" x2="217" y2="305" stroke="#FAF5EF" stroke-width="6" />
+  <line x1="295" y1="202" x2="295" y2="305" stroke="#FAF5EF" stroke-width="6" />
+  <line x1="319" y1="202" x2="319" y2="305" stroke="#FAF5EF" stroke-width="6" />
+  <line x1="355" y1="202" x2="355" y2="305" stroke="#FAF5EF" stroke-width="6" />
+  <line x1="379" y1="202" x2="379" y2="305" stroke="#FAF5EF" stroke-width="6" />
+
+  <!-- Column Grooves -->
+  <line x1="130" y1="245" x2="160" y2="245" stroke="#FAF5EF" stroke-width="5" />
+  <line x1="190" y1="245" x2="220" y2="245" stroke="#FAF5EF" stroke-width="5" />
+  <line x1="292" y1="245" x2="322" y2="245" stroke="#FAF5EF" stroke-width="5" />
+  <line x1="352" y1="245" x2="382" y2="245" stroke="#FAF5EF" stroke-width="5" />
+
+  <line x1="130" y1="280" x2="160" y2="280" stroke="#FAF5EF" stroke-width="5" />
+  <line x1="190" y1="280" x2="220" y2="280" stroke="#FAF5EF" stroke-width="5" />
+  <line x1="292" y1="280" x2="322" y2="280" stroke="#FAF5EF" stroke-width="5" />
+  <line x1="352" y1="280" x2="382" y2="280" stroke="#FAF5EF" stroke-width="5" />
+
+  <!-- Column Bases -->
+  <rect x="125" y="305" width="40" height="12" rx="2" fill="#FAF5EF" />
+  <rect x="185" y="305" width="40" height="12" rx="2" fill="#FAF5EF" />
+  <rect x="287" y="305" width="40" height="12" rx="2" fill="#FAF5EF" />
+  <rect x="347" y="305" width="40" height="12" rx="2" fill="#FAF5EF" />
+
+  <!-- Sanctuary Fig Fruit -->
+  <path d="M 256 200 C 245 228 200 248 200 284 C 200 312 224 322 256 322 C 288 322 312 312 312 284 C 312 248 267 228 256 200 Z" stroke="#FAF5EF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+  <path d="M 256 200 C 253 192 257 187 261 184" stroke="#FAF5EF" stroke-width="5" stroke-linecap="round"/>
+  <path d="M 256 205 C 256 240 256 285 256 322" stroke="#FAF5EF" stroke-width="4.5" stroke-linecap="round" />
+  <path d="M 256 210 C 242 245 225 272 224 314" stroke="#FAF5EF" stroke-width="4" stroke-linecap="round" />
+  <path d="M 256 210 C 230 248 210 274 208 300" stroke="#FAF5EF" stroke-width="3.5" stroke-linecap="round" />
+  <path d="M 256 210 C 270 245 287 272 288 314" stroke="#FAF5EF" stroke-width="4" stroke-linecap="round" />
+  <path d="M 256 210 C 282 248 302 274 304 300" stroke="#FAF5EF" stroke-width="3.5" stroke-linecap="round" />
+
+  <!-- Stylobate Base Steps -->
+  <line x1="110" y1="322" x2="402" y2="322" stroke="#FAF5EF" stroke-width="8" stroke-linecap="round" />
+  <line x1="100" y1="336" x2="412" y2="336" stroke="#FAF5EF" stroke-width="8" stroke-linecap="round" />
+  <line x1="88" y1="350" x2="424" y2="350" stroke="#FAF5EF" stroke-width="8" stroke-linecap="round" />
+
+  <!-- GERGA Brand Text -->
+  <text x="256" y="424" text-anchor="middle" font-family="'Cinzel', 'Trajan Pro', 'Georgia', serif" font-size="54" font-weight="400" letter-spacing="0.32em" fill="#FAF5EF">GERGA</text>
 </svg>
