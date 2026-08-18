@@ -1,0 +1,61 @@
+<svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Outer Pediment Roof Triangle -->
+  <path d="M 60 120 L 200 50 L 340 120" stroke="#FAF5EF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Inner Pediment Line -->
+  <path d="M 80 120 L 200 66 L 320 120" stroke="#FAF5EF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Entablature Horizontal Beams -->
+  <line x1="50" y1="120" x2="350" y2="120" stroke="#FAF5EF" stroke-width="6" stroke-linecap="round" />
+  <line x1="50" y1="134" x2="350" y2="134" stroke="#FAF5EF" stroke-width="6" stroke-linecap="round" />
+  <line x1="68" y1="146" x2="332" y2="146" stroke="#FAF5EF" stroke-width="5" stroke-linecap="round" />
+
+  <!-- Column Capitals -->
+  <rect x="75" y="146" width="36" height="10" rx="1" fill="#FAF5EF" />
+  <rect x="125" y="146" width="36" height="10" rx="1" fill="#FAF5EF" />
+  <rect x="239" y="146" width="36" height="10" rx="1" fill="#FAF5EF" />
+  <rect x="289" y="146" width="36" height="10" rx="1" fill="#FAF5EF" />
+
+  <!-- Column Shafts -->
+  <line x1="82" y1="156" x2="82" y2="242" stroke="#FAF5EF" stroke-width="5" />
+  <line x1="104" y1="156" x2="104" y2="242" stroke="#FAF5EF" stroke-width="5" />
+  <line x1="132" y1="156" x2="132" y2="242" stroke="#FAF5EF" stroke-width="5" />
+  <line x1="154" y1="156" x2="154" y2="242" stroke="#FAF5EF" stroke-width="5" />
+  <line x1="246" y1="156" x2="246" y2="242" stroke="#FAF5EF" stroke-width="5" />
+  <line x1="268" y1="156" x2="268" y2="242" stroke="#FAF5EF" stroke-width="5" />
+  <line x1="296" y1="156" x2="296" y2="242" stroke="#FAF5EF" stroke-width="5" />
+  <line x1="318" y1="156" x2="318" y2="242" stroke="#FAF5EF" stroke-width="5" />
+
+  <!-- Column Grooves -->
+  <line x1="80" y1="184" x2="106" y2="184" stroke="#FAF5EF" stroke-width="4" />
+  <line x1="130" y1="184" x2="156" y2="184" stroke="#FAF5EF" stroke-width="4" />
+  <line x1="244" y1="184" x2="270" y2="184" stroke="#FAF5EF" stroke-width="4" />
+  <line x1="294" y1="184" x2="320" y2="184" stroke="#FAF5EF" stroke-width="4" />
+
+  <line x1="80" y1="214" x2="106" y2="214" stroke="#FAF5EF" stroke-width="4" />
+  <line x1="130" y1="214" x2="156" y2="214" stroke="#FAF5EF" stroke-width="4" />
+  <line x1="244" y1="214" x2="270" y2="214" stroke="#FAF5EF" stroke-width="4" />
+  <line x1="294" y1="214" x2="320" y2="214" stroke="#FAF5EF" stroke-width="4" />
+
+  <!-- Column Bases -->
+  <rect x="75" y="242" width="36" height="10" rx="1" fill="#FAF5EF" />
+  <rect x="125" y="242" width="36" height="10" rx="1" fill="#FAF5EF" />
+  <rect x="239" y="242" width="36" height="10" rx="1" fill="#FAF5EF" />
+  <rect x="289" y="242" width="36" height="10" rx="1" fill="#FAF5EF" />
+
+  <!-- Sanctuary Fig Fruit -->
+  <path d="M 200 154 C 192 175 158 190 158 220 C 158 244 176 252 200 252 C 224 252 242 244 242 220 C 242 190 208 175 200 154 Z" stroke="#FAF5EF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+  <path d="M 200 154 C 198 148 201 144 204 142" stroke="#FAF5EF" stroke-width="4" stroke-linecap="round"/>
+  <path d="M 200 158 C 200 190 200 225 200 252" stroke="#FAF5EF" stroke-width="3.5" stroke-linecap="round" />
+  <path d="M 200 162 C 190 188 177 210 176 244" stroke="#FAF5EF" stroke-width="3" stroke-linecap="round" />
+  <path d="M 200 162 C 182 192 166 212 165 234" stroke="#FAF5EF" stroke-width="2.5" stroke-linecap="round" />
+  <path d="M 200 162 C 210 188 223 210 224 244" stroke="#FAF5EF" stroke-width="3" stroke-linecap="round" />
+  <path d="M 200 162 C 218 192 234 212 235 234" stroke="#FAF5EF" stroke-width="2.5" stroke-linecap="round" />
+
+  <!-- Stylobate Base Steps -->
+  <line x1="60" y1="252" x2="340" y2="252" stroke="#FAF5EF" stroke-width="6" stroke-linecap="round" />
+  <line x1="52" y1="264" x2="348" y2="264" stroke="#FAF5EF" stroke-width="6" stroke-linecap="round" />
+  <line x1="42" y1="276" x2="358" y2="276" stroke="#FAF5EF" stroke-width="6" stroke-linecap="round" />
+
+  <!-- GERGA Typography -->
+  <text x="200" y="340" text-anchor="middle" font-family="'Cinzel', 'Trajan Pro', 'Georgia', serif" font-size="52" font-weight="300" letter-spacing="0.3em" fill="#FAF5EF">GERGA</text>
+</svg>

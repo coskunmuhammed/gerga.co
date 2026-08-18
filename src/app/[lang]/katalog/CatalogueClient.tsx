@@ -6,6 +6,8 @@ import { Printer, ArrowLeft, CheckCircle2, Phone, Mail, MapPin, Globe, Leaf, Shi
 import { getDictionary } from "@/dictionaries";
 import { trackEvent } from "@/lib/analytics";
 
+import GergaLogo from "@/components/GergaLogo";
+
 interface CatalogueClientProps {
   lang: string;
 }
@@ -55,10 +57,8 @@ export default function CatalogueClient({ lang }: CatalogueClientProps) {
           {/* Header & Logo */}
           <header className="border-b border-white/10 print:border-black/20 pb-8 mb-8 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6">
             <div>
-              <div className="flex items-center gap-3 mb-2">
-                <span className="text-2xl font-bold font-serif tracking-widest text-[#d4af37] print:text-black">
-                  GERGA
-                </span>
+              <div className="flex items-center gap-4 mb-3">
+                <GergaLogo variant="inline" size="md" theme="gold" showSubtitle={true} />
                 <span className="text-xs font-mono px-2.5 py-0.5 rounded-full bg-[#d4af37]/20 print:bg-black/10 text-[#d4af37] print:text-black border border-[#d4af37]/40 print:border-black/20 uppercase tracking-widest">
                   B2B Profile
                 </span>

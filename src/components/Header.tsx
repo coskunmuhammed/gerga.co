@@ -6,6 +6,8 @@ import { usePathname, useRouter } from "next/navigation";
 import { Globe, Menu, X, ArrowUpRight, Award } from "lucide-react";
 import { getDictionary } from "@/dictionaries";
 
+import GergaLogo from "./GergaLogo";
+
 interface HeaderProps {
   lang: string;
 }
@@ -76,20 +78,8 @@ export default function Header({ lang }: HeaderProps) {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 flex items-center justify-between">
         {/* Brand Logo & Emblem */}
-        <Link href={`/${lang}`} className="group flex items-center gap-2.5 shrink-0">
-          <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-[#d4af37]/40 flex items-center justify-center bg-[#090b09]/80 group-hover:border-[#d4af37] transition-all">
-            <span className="text-[#d4af37] font-serif text-lg font-bold tracking-widest">
-              G
-            </span>
-          </div>
-          <div className="flex flex-col">
-            <span className="font-serif text-xl sm:text-2xl tracking-[0.2em] text-white font-bold group-hover:text-[#d4af37] transition-colors">
-              GERGA
-            </span>
-            <span className="text-[8px] sm:text-[9px] tracking-[0.25em] text-[#8e998f] uppercase font-mono">
-              Aegean Agriculture
-            </span>
-          </div>
+        <Link href={`/${lang}`} className="group flex items-center shrink-0">
+          <GergaLogo variant="inline" size="sm" theme="gold" showSubtitle={true} />
         </Link>
 
         {/* Desktop Navigation Links */}

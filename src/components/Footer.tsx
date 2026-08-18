@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { Globe, ArrowUp } from "lucide-react";
 import { getDictionary } from "@/dictionaries";
+import GergaLogo from "./GergaLogo";
 
 interface FooterProps {
   lang: string;
@@ -43,13 +44,8 @@ export default function Footer({ lang, contactData }: FooterProps) {
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 pb-12 border-b border-white/10">
           {/* Logo & Tagline */}
           <div className="flex flex-col gap-2">
-            <Link href={`/${lang}`} className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-full border border-[#d4af37] flex items-center justify-center bg-black">
-                <span className="text-[#d4af37] font-serif font-bold text-sm">G</span>
-              </div>
-              <span className="font-serif text-xl tracking-[0.25em] text-white font-bold">
-                GERGA
-              </span>
+            <Link href={`/${lang}`} className="flex items-center">
+              <GergaLogo variant="inline" size="sm" theme="gold" showSubtitle={true} />
             </Link>
             <p className="text-xs text-gray-500 font-light font-sans max-w-sm">
               {dict.footer.tagline}

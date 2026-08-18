@@ -5,6 +5,7 @@ import { ArrowDownRight, Calendar, Sparkles, Info } from "lucide-react";
 import Image from "next/image";
 import { getDictionary } from "@/dictionaries";
 import { MEDIA_CONFIG } from "@/config/media";
+import GergaLogo from "./GergaLogo";
 
 interface HeroProps {
   lang: string;
@@ -46,17 +47,20 @@ export default function Hero({ lang, content }: HeroProps) {
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-12 text-center flex flex-col items-center">
-        {/* Overline Badge */}
+        {/* Brand Emblem & Overline Badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#d4af37]/40 bg-black/70 backdrop-blur-md mb-8 shadow-2xl"
+          className="flex flex-col items-center gap-3 mb-6"
         >
-          <Sparkles className="w-3.5 h-3.5 text-[#d4af37]" />
-          <span className="text-[10px] sm:text-xs font-mono tracking-[0.2em] text-[#d4af37] uppercase font-semibold">
-            {overline}
-          </span>
+          <GergaLogo variant="emblem" size="md" theme="gold" className="drop-shadow-[0_4px_20px_rgba(212,175,55,0.3)] hover:scale-105 transition-transform duration-300" />
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#d4af37]/40 bg-black/70 backdrop-blur-md shadow-2xl">
+            <Sparkles className="w-3.5 h-3.5 text-[#d4af37]" />
+            <span className="text-[10px] sm:text-xs font-mono tracking-[0.2em] text-[#d4af37] uppercase font-semibold">
+              {overline}
+            </span>
+          </div>
         </motion.div>
 
         {/* Headline */}

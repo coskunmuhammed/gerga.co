@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { getDictionary } from "@/dictionaries";
 import { trackEvent } from "@/lib/analytics";
+import GergaLogo from "./GergaLogo";
 
 interface ContactCardProps {
   lang: string;
@@ -95,18 +96,8 @@ END:VCARD`;
             <div className="absolute top-0 right-0 w-40 h-40 bg-[#d4af37]/10 rounded-full blur-3xl" />
 
             <div className="flex items-center justify-between border-b border-white/10 pb-6 mb-8">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full border border-[#d4af37] flex items-center justify-center bg-black">
-                  <span className="text-[#d4af37] font-serif font-bold text-lg">G</span>
-                </div>
-                <div>
-                  <h3 className="font-serif text-xl text-white font-semibold tracking-wider">
-                    GERGA
-                  </h3>
-                  <span className="text-[10px] font-mono text-gray-400 uppercase tracking-widest">
-                    Digital Contact Card
-                  </span>
-                </div>
+              <div className="flex items-center">
+                <GergaLogo variant="inline" size="sm" theme="gold" showSubtitle={true} />
               </div>
               <span className="px-3 py-1 rounded-full bg-[#d4af37]/20 border border-[#d4af37]/40 text-[10px] font-mono text-[#d4af37] uppercase">
                 Official B2B

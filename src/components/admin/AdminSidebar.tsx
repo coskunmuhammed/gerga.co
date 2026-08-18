@@ -23,6 +23,7 @@ import {
   LogOut,
   ExternalLink,
 } from "lucide-react";
+import GergaLogo from "../GergaLogo";
 
 const NAV_GROUPS = [
   {
@@ -80,19 +81,9 @@ export default function AdminSidebar() {
     <aside className="w-64 bg-[#0d100d] border-r border-white/10 flex flex-col justify-between shrink-0 h-screen sticky top-0">
       {/* Brand Header */}
       <div>
-        <div className="p-5 border-b border-white/10 flex items-center justify-between">
-          <Link href="/admin/b2b-talepleri" className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-full border border-[#d4af37]/60 bg-[#d4af37]/10 flex items-center justify-center text-[#d4af37] font-serif font-bold text-sm">
-              G
-            </div>
-            <div>
-              <h2 className="font-serif text-sm font-bold text-white tracking-widest">
-                GERGA ADMIN
-              </h2>
-              <p className="text-[9px] font-mono text-gray-400 uppercase">
-                Content & Operations
-              </p>
-            </div>
+        <div className="p-4 border-b border-white/10 flex items-center justify-between">
+          <Link href="/admin/b2b-talepleri" className="flex items-center">
+            <GergaLogo variant="inline" size="sm" theme="gold" showSubtitle={false} />
           </Link>
           <a
             href="/tr"
